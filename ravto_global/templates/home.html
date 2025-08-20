@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<section class="hero-section text-center py-5 bg-light">
+    <div class="container">
+        <h1 class="display-4">Reliable Electrical & Mechanical Services in Kenya</h1>
+        <p class="lead">Professional solutions for all your engineering and technical needs</p>
+        <div class="mt-4">
+            <a href="/request-service/" class="btn btn-primary btn-lg me-2">Request a Service</a>
+            <a href="/contact/" class="btn btn-outline-primary btn-lg">Contact Us</a>
+        </div>
+    </div>
+</section>
+
+<section class="services-section py-5">
+    <div class="container">
+        <h2 class="text-center mb-5">Our Services</h2>
+        <div class="row g-4">
+            {% for service in services %}
+            <div class="col-md-4">
+                <div class="card h-100">
+                    <div class="card-body text-center">
+                        <i class="{{ service.icon }} fa-3x mb-3 text-primary"></i>
+                        <h5 class="card-title">{{ service.title }}</h5>
+                        <p class="card-text">{{ service.description|truncatewords:20 }}</p>
+                        <a href="/services/#{{ service.category }}" class="btn btn-outline-primary">Learn More</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}

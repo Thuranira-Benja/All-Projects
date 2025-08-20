@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% load timetable_tags %}
+
+{% block title %}My Class Timetable{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="text-center mb-4">
+        <h2 class="fw-bold text-primary">My Class Timetable</h2>
+        <p class="lead">{{ item_name }}</p>
+    </div>
+
+    <div class="table-responsive">
+        <table class="table table-bordered text-center">
+            <thead class="table-light">
+                <tr>
+                    <th>Time</th>
+                    {% for day in days %}
+                        <th>{{ day }}</th>
+                    {% endfor %}
+                </tr>
+            </thead>
+            <tbody>
+                {% for slot in slots %}
+                <tr>
+                    <td class="fw-bold bg-light">{{ slot.start_time|time:"g:i" }} - {{ slot.end_time|time:"g:i A" }}</td>
+                    {% for day in days %}
+                        <td>
+                            {% with lesson=grid|get_item:day|get_item:slot %}
+                                {% if lesson %}
+                                    <div class="p-2 rounded bg-light">
+                                        <strong>{{ lesson.subject_allocation.subject.name }}</strong><br>
+                                        <small>{{ lesson.teacher.name }}</small>
+                                    </div>
+                                {% else %}
+                                    <span class="text-muted">Free</span>
+                                {% endif %}
+                            {% endwith %}
+                        </td>
+                    {% endfor %}
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

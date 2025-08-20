@@ -1,0 +1,79 @@
+version: '3.8'
+
+services:
+  # PostgreSQL Database
+  db:
+    image: postgres:13
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    environment:
+      - POSTGRES_DB=${DB_NAME}
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+    restart: unless-stopped
+
+  # Redis Message Broker
+  redis:
+    image: redis:6-alpine
+    restart: unless-stopped
+
+  # Django Application Service
+  web:
+    build: .
+    command: gunicorn meru_hub.wsgi:application --bind 0.0.0.0:8000
+    volumes:
+      - .:/app
+      - static_volume:/app/staticfiles # Share static files with Nginx
+      - media_volume:/app/mediafiles   # Share media files with Nginx
+    expose:
+      - 8000
+    depends_on:
+      - db
+      - redis
+    env_file:
+      - .env
+    restart: unless-stopped
+
+  # Celery Worker Service
+  celery:
+    build: .
+    command: celery -A meru_hub worker --loglevel=info
+    volumes:
+      - .:/app
+    depends_on:
+      - web
+      - redis
+    env_file:
+      - .env
+    restart: unless-stopped
+  
+  # FastAPI ML Service
+  ml_api:
+    build:
+      context: .
+      dockerfile: ml_services/Dockerfile
+    expose:
+      - 8001
+    restart: unless-stopped
+
+  # Nginx Web Server / Reverse Proxy
+  nginx:
+    image: nginx:latest
+    ports:
+      - "80:80"
+      - "443:443" # For SSL
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf
+      - static_volume:/app/staticfiles
+      - media_volume:/app/mediafiles
+      # Add SSL certificate volumes here for production
+      # - ./data/certbot/conf:/etc/letsencrypt
+      # - ./data/certbot/www:/var/www/certbot
+    depends_on:
+      - web
+    restart: unless-stopped
+
+volumes:
+  postgres_data:
+  static_volume:
+  media_volume:

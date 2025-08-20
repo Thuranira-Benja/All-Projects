@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block title %}Generate Timetable{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card text-center shadow-sm">
+            <div class="card-header bg-primary text-white">
+                <h1 class="h4 my-2">Automatic Timetable Generator</h1>
+            </div>
+            <div class="card-body">
+                <p class="card-text lead">
+                    Click the button below to start the automatic timetable generation process.
+                </p>
+                <div class="alert alert-warning">
+                    <strong>⚠️ Warning:</strong> This will delete the current timetable and generate a new one. This action cannot be undone.
+                </div>
+
+                <form method="post" class="mt-4" id="generateForm">
+                    {% csrf_token %}
+                    <button type="submit" id="generateBtn" class="btn btn-lg btn-success">
+                        <i class="fas fa-cogs me-2"></i>
+                        <span class="button-text">Generate New Timetable</span>
+                        <span class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true"></span>
+                    </button>
+                </form>
+            </div>
+            <div class="card-footer text-muted">
+                Please be patient. Generation may take a few seconds.
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    const form = document.getElementById('generateForm');
+    const button = document.getElementById('generateBtn');
+    const spinner = button.querySelector('.spinner-border');
+    const text = button.querySelector('.button-text');
+
+    form.addEventListener('submit', () => {
+        button.disabled = true;
+        spinner.classList.remove('d-none');
+        text.textContent = 'Generating...';
+    });
+</script>
+{% endblock %}

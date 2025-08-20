@@ -1,0 +1,316 @@
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+header {
+    background-color: #1d3557;
+    color: white;
+    padding: 10px 0;
+    text-align: center;
+}
+
+header .logo-img {
+    max-width: 100px;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+}
+
+nav ul li {
+    margin: 0 15px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+main {
+    padding: 20px;
+    text-align: center;
+}
+
+.welcome-section {
+    margin-top: 20px;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #1d3557;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #e63946;
+}
+
+.stations-section,
+.schedule-section,
+.request-section,
+.chat-section,
+.contact-section,
+.team-section {
+    margin-top: 40px;
+}
+
+.stations-section ul,
+.chat-section #messages {
+    list-style: none;
+    padding: 0;
+}
+
+ul#stationList li {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.schedule-section table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.schedule-section th,
+.schedule-section td {
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: center;
+}
+
+.team-section {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.team-member {
+    margin: 20px;
+    text-align: center;
+}
+
+.team-member img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+}
+
+.chat-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#chatBox {
+    width: 80%;
+    background-color: #f1f1f1;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+#messages {
+    height: 200px;
+    overflow-y: auto;
+    margin-bottom: 10px;
+}
+
+#chatInput {
+    width: 80%;
+    padding: 10px;
+}
+
+footer {
+    background-color: #1d3557;
+    color: white;
+    padding: 10px 0;
+    text-align: center;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+}
+
+/* Additional styles for the live stream section */
+.stream-section {
+    margin-top: 50px;
+    text-align: center;
+    background-color: #f4f4f4;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.stream-player {
+    padding: 20px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+.stream-player p {
+    margin-bottom: 10px;
+    font-size: 18px;
+}
+
+audio {
+    width: 100%;
+    max-width: 300px;
+}
+
+
+
+/* styles.css */
+header .logo h1 {
+    font-size: 2em;
+    margin: 0;
+    color: #fff;
+}
+
+header .logo p {
+    font-size: 1.2em;
+    color: #ddd;
+}
+
+/* Styling for the station frequency */
+header .logo h1::after {
+    content: " - 99.5 FM";
+    color: #e63946;
+    font-size: 0.9em;
+}
+
+
+
+/* Frequency signal effect */
+@keyframes frequencySignal {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(100%); }
+}
+
+.frequency-signals {
+    position: relative;
+    display: inline-block;
+    width: 300px;
+    height: 10px;
+    margin-top: 10px;
+    background: linear-gradient(90deg, #e63946 25%, transparent 25%, transparent 50%, #e63946 50%, #e63946 75%, transparent 75%, transparent 100%);
+    background-size: 200% 100%;
+    animation: frequencySignal 1s linear infinite;
+}
+
+.stream-section .stream-player {
+    position: relative;
+    padding: 20px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+.stream-section .stream-player .frequency-signals {
+    display: block;
+    margin: 10px auto;
+    width: 100%;
+    max-width: 300px;
+    height: 10px;
+}
+
+
+/* General image hover animation */
+.team-member img {
+    transition: transform 0.5s ease-in-out;
+    width: 100%;
+    border-radius: 10px;
+}
+
+/* Inward movement effect on hover */
+.team-member img:hover {
+    transform: scale(0.95); /* Slightly reduce size to give an inward movement */
+}
+
+
+/* Styling for the typing indicator (three twinkling dots) */
+.typing-indicator {
+    display: inline-block;
+    position: relative;
+    width: 60px;
+    height: 20px;
+}
+
+.typing-indicator div {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background-color: #e63946;
+    border-radius: 50%;
+    animation: typingBlink 1.5s infinite ease-in-out;
+}
+
+.typing-indicator div:nth-child(1) {
+    left: 8px;
+    animation-delay: 0s;
+}
+.typing-indicator div:nth-child(2) {
+    left: 24px;
+    animation-delay: 0.2s;
+}
+.typing-indicator div:nth-child(3) {
+    left: 40px;
+    animation-delay: 0.4s;
+}
+
+@keyframes typingBlink {
+    0% { opacity: 0.2; }
+    20% { opacity: 1; }
+    100% { opacity: 0.2; }
+}
+
+
+/* Typing indicator CSS */
+.typing-indicator {
+    display: inline-block;
+    position: relative;
+    width: 60px;
+    height: 20px;
+    margin-top: 10px;
+}
+
+.typing-indicator div {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background-color: #e63946;
+    border-radius: 50%;
+    animation: typingBlink 1.5s infinite ease-in-out;
+}
+
+.typing-indicator div:nth-child(1) {
+    left: 8px;
+    animation-delay: 0s;
+}
+
+.typing-indicator div:nth-child(2) {
+    left: 24px;
+    animation-delay: 0.2s;
+}
+
+.typing-indicator div:nth-child(3) {
+    left: 40px;
+    animation-delay: 0.4s;
+}
+
+@keyframes typingBlink {
+    0% { opacity: 0.2; }
+    20% { opacity: 1; }
+    100% { opacity: 0.2; }
+}

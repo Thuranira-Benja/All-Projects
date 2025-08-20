@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Business Permit</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        .permit-box {
+            border: 2px dashed #333;
+            padding: 20px;
+        }
+        h2 {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="permit-box">
+        <h2>Business Permit</h2>
+        <p><strong>Business Name:</strong> {{ permit.business_name }}</p>
+        <p><strong>Owner:</strong> {{ permit.owner.get_full_name }}</p>
+        <p><strong>Ward:</strong> {{ permit.ward }}</p>
+        <p><strong>Business Type:</strong> {{ permit.business_type }}</p>
+        <p><strong>Amount Paid:</strong> KES {{ permit.amount }}</p>
+        <p><strong>Receipt No:</strong> {{ permit.receipt_no }}</p>
+        <p><strong>Issue Date:</strong> {{ permit.issue_date }}</p>
+        <p><strong>Expiry Date:</strong> {{ permit.expiry_date }}</p>
+        <p><strong>Status:</strong> {{ permit.status }}</p>
+    </div>
+</body>
+</html>
