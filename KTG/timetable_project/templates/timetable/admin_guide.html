@@ -1,0 +1,130 @@
+{% extends 'base.html' %}
+{% block title %}Admin Setup Guide{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1 class="mb-4">🛠️ Step-by-Step: Set Up Data in Django Admin</h1>
+
+    <p>Go to your <strong><a href="/admin">admin panel</a></strong> and follow the steps below:</p>
+
+    <hr>
+
+    <h4>1️⃣ Add Classes (<code>SchoolClass</code>)</h4>
+    <p>Go to: <strong>School classes > Add</strong></p>
+    <p>Create entries like:</p>
+    <ul>
+        <li>Form 1</li>
+        <li>Form 2</li>
+        <li>Form 3</li>
+        <li>Form 4</li>
+    </ul>
+    <p class="text-warning">You must create at least <strong>1 class</strong>.</p>
+
+    <hr>
+
+    <h4>2️⃣ Add Subjects (<code>Subject</code>)</h4>
+    <p>Go to: <strong>Subjects > Add</strong></p>
+    <p>Add subjects like:</p>
+    <ul>
+        <li>Mathematics</li>
+        <li>English</li>
+        <li>Biology</li>
+        <li>Chemistry</li>
+        <li>History</li>
+    </ul>
+    <p class="text-warning">Each subject name must be <strong>unique</strong> and correctly spelled.</p>
+
+    <hr>
+
+    <h4>3️⃣ Add Teachers (<code>Teacher</code>)</h4>
+    <p>Go to: <strong>Teachers > Add</strong></p>
+    <p>Fill in details like:</p>
+    <ul>
+        <li><strong>Name</strong>: e.g., Mr. Otieno</li>
+        <li><strong>Phone number</strong>: e.g., +254712345678</li>
+        <li><strong>Max lessons per day</strong>: e.g., 4</li>
+        <li><strong>Max lessons per week</strong>: e.g., 20</li>
+        <li><strong>Subjects</strong>: Select multiple (e.g., Math, Chemistry)</li>
+        <li><strong>Preferred classes</strong>: Select the Forms they teach (e.g., Form 1, Form 2)</li>
+    </ul>
+
+    <div class="alert alert-info">
+        ✅ <strong>Ensure:</strong><br>
+        - Each subject has at least one teacher<br>
+        - Each teacher has enough capacity (lessons/day & week)
+    </div>
+
+    <hr>
+
+    <h4>4️⃣ Allocate Subjects to Classes (<code>SubjectAllocation</code>)</h4>
+    <p>Go to: <strong>Subject allocations > Add</strong></p>
+    <p>Example entry:</p>
+    <ul>
+        <li><strong>School class</strong>: Form 1</li>
+        <li><strong>Subject</strong>: Mathematics</li>
+        <li><strong>Lessons per week</strong>: 5</li>
+        <li><strong>Requires double period</strong>: ✔️ if needed</li>
+    </ul>
+
+    <p>🔁 Repeat for each subject per class. Sample:</p>
+    <table class="table table-sm table-bordered">
+        <thead>
+            <tr><th>Class</th><th>Subject</th><th>Lessons</th><th>Double Period</th></tr>
+        </thead>
+        <tbody>
+            <tr><td>Form 1</td><td>Math</td><td>5</td><td>❌</td></tr>
+            <tr><td>Form 1</td><td>English</td><td>4</td><td>✅</td></tr>
+            <tr><td>Form 2</td><td>Chemistry</td><td>3</td><td>✅</td></tr>
+        </tbody>
+    </table>
+
+    <p class="text-warning">Ensure each allocation matches with a teacher who teaches that subject and prefers that class.</p>
+
+    <hr>
+
+    <h4>5️⃣ Add Time Slots (<code>TimeSlot</code>)</h4>
+    <p>Go to: <strong>Time slots > Add</strong></p>
+    <p>Create enough periods per day (e.g., 6 per day, Monday to Friday).</p>
+    <p>Example entries:</p>
+    <table class="table table-sm table-bordered">
+        <thead>
+            <tr><th>Day</th><th>Start Time</th><th>End Time</th><th>Is Break?</th></tr>
+        </thead>
+        <tbody>
+            <tr><td>Monday</td><td>08:00</td><td>08:40</td><td>❌</td></tr>
+            <tr><td>Monday</td><td>08:40</td><td>09:20</td><td>❌</td></tr>
+            <tr><td>Monday</td><td>09:20</td><td>10:00</td><td>❌</td></tr>
+            <tr><td>Monday</td><td>10:00</td><td>10:20</td><td>✅</td></tr>
+        </tbody>
+    </table>
+
+    <p>🧠 Tip: If you need 30 lessons per week, make sure your time slots can fit that.</p>
+
+    <hr>
+
+    <h4>✅ After Admin Setup</h4>
+    <p>Go to the <strong>Dashboard</strong> and click <strong>Generate Timetable</strong>.</p>
+    <p>You will be redirected back to the dashboard with a success message if everything is correct.</p>
+
+    <hr>
+
+    <h4>🚨 Common Issues to Avoid</h4>
+    <table class="table table-bordered">
+        <thead>
+            <tr><th>Problem</th><th>Fix</th></tr>
+        </thead>
+        <tbody>
+            <tr><td>Some lessons not scheduled</td><td>Ensure enough TimeSlots and teachers</td></tr>
+            <tr><td>Teacher skipped</td><td>Check subject/class preference and capacity</td></tr>
+            <tr><td>Double periods not placed</td><td>Ensure two consecutive free slots</td></tr>
+            <tr><td>No output after generation</td><td>Check terminal logs for skipped messages</td></tr>
+        </tbody>
+    </table>
+
+    <div class="mt-4">
+        <a href="{% url 'dashboard' %}" class="btn btn-outline-secondary">
+            <i class="fas fa-arrow-left me-1"></i> Back to Dashboard
+        </a>
+    </div>
+</div>
+{% endblock %}

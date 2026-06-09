@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block title %}No Timetable Found{% endblock %}
+
+{% block content %}
+<div class="container mt-5 text-center">
+    <h2 class="text-danger">No Timetable Available</h2>
+    <p class="lead">The system couldn’t find a timetable for your class at the moment.</p>
+    <a href="{% url 'dashboard' %}" class="btn btn-primary mt-3">Go Back to Dashboard</a>
+</div>
+{% endblock %}

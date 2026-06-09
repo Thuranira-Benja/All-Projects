@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Radio Stream | Listen Live</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="OIP.jpeg" alt="Radio Stream Logo" class="logo-img">
+            <h1>Lamata Radio Stream - 99.5 FM</h1>
+            <p>Streaming the best music 24/7 on 99.5 FM</p>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#stations">Stations</a></li>
+                <li><a href="#schedule">DJ Schedule</a></li>
+                <li><a href="#team">Our Team</a></li>
+                <li><a href="#stream">Live Stream</a></li>
+                <li><a href="#request">Song Request</a></li>
+                <li><a href="#chat">Live Chat</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Home Section -->
+        <section id="home" class="welcome-section">
+            <h2>Welcome to Lamata Radio Stream</h2>
+            <p>Tune in to 99.5 FM or listen live online for the best music and shows.</p>
+            <button onclick="playRadio()">Play Radio</button>
+        </section>
+
+        <!-- Stations Section -->
+        <section id="stations" class="stations-section">
+            <h2>Available Stations</h2>
+            <ul id="stationList">
+                <li>
+                    <span>Pop Hits (99.5 FM)</span>
+                    <button onclick="playStation('https://example-stream-url.com/pop')">Play</button>
+                </li>
+                <li>
+                    <span>Jazz Vibes (99.5 FM)</span>
+                    <button onclick="playStation('https://example-stream-url.com/jazz')">Play</button>
+                </li>
+                <li>
+                    <span>Classical Melodies (99.5 FM)</span>
+                    <button onclick="playStation('https://example-stream-url.com/classical')">Play</button>
+                </li>
+            </ul>
+        </section>
+
+        <!-- DJ Schedule Section -->
+        <section id="schedule" class="schedule-section">
+            <h2>DJ Schedule</h2>
+            <table>
+                <tr>
+                    <th>Time</th>
+                    <th>DJ Name</th>
+                    <th>Show Name</th>
+                </tr>
+                <tr>
+                    <td>9:00 AM - 12:00 PM</td>
+                    <td>DJ Grouchi</td>
+                    <td>Morning Vibes (99.5 FM)</td>
+                </tr>
+                <tr>
+                    <td>12:00 PM - 3:00 PM</td>
+                    <td>DJ Amar</td>
+                    <td>Afternoon Grooves (99.5 FM)</td>
+                </tr>
+                <tr>
+                    <td>3:00 PM - 6:00 PM</td>
+                    <td>DJ Lyta</td>
+                    <td>Evening Chill (99.5 FM)</td>
+                </tr>
+            </table>
+        </section>
+
+        <!-- Our Team Section -->
+        <section id="team" class="team-section">
+            <h2>Meet Our Team</h2>
+            <div class="team-grid">
+                <div class="team-member">
+                    <img src="dj grouchi.jpeg" alt="DJ Grouchi">
+                    <h3>DJ Grouchi</h3>
+                    <p>Morning Show Host (99.5 FM)</p>
+                </div>
+                <div class="team-member">
+                    <img src="lady dj.jpeg" alt="DJ Amar">
+                    <h3>DJ Amar</h3>
+                    <p>Afternoon Grooves Host (99.5 FM)</p>
+                </div>
+                <div class="team-member">
+                    <img src="lyta.jpeg" alt="DJ Lyta">
+                    <h3>DJ Lyta</h3>
+                    <p>Evening Chill Host (99.5 FM)</p>
+                </div>
+                <div class="team-member">
+                    <img src="CEO.jpg" alt="CEO">
+                    <h3>Benjamin Thuranira</h3>
+                    <p>CEO & Founder</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Live Streaming Section -->
+        <section id="stream" class="stream-section">
+            <h2>Listen Live on 99.5 FM</h2>
+            <div class="stream-player">
+                <p>Now playing: Radio Stream 99.5 FM - 24/7 Live Broadcast</p>
+                <audio id="radioPlayer" controls>
+                    <source id="radioSource" src="https://ke.nrg.radio/watch-live/" type="audio/mpeg">
+                    Your browser does not support the audio element.
+                </audio>
+                <!-- Frequency Signal Animation -->
+                <div class="frequency-signals"></div>
+            </div>
+        </section>
+
+        <!-- Song Request Section -->
+        <section id="request" class="request-section">
+            <h2>Request a Song</h2>
+            <form id="requestForm">
+                <label for="songName">Song Name</label>
+                <input type="text" id="songName" name="songName" required>
+
+                <label for="artistName">Artist</label>
+                <input type="text" id="artistName" name="artistName" required>
+
+                <button type="submit">Request Song</button>
+            </form>
+        </section>
+
+        <!-- Live Chat Section -->
+        <section id="chat" class="chat-section">
+            <h2>Live Chat</h2>
+            <div id="chatBox">
+                <div id="messages"></div>
+                <input type="text" id="chatInput" placeholder="Type your message..." oninput="userTyping()" />
+                <button onclick="sendMessage()">Send</button>
+                <!-- Typing Indicator -->
+                <div id="typingIndicator" class="typing-indicator" style="display: none;">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="contact-section">
+            <h2>Contact Us</h2>
+            <form id="contactForm">
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name" required>
+
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required>
+
+                <label for="message">Message</label>
+                <textarea id="message" name="message" required></textarea>
+
+                <button type="submit">Submit</button>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Radio Stream | Broadcasting on 99.5 FM | All Rights Reserved</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

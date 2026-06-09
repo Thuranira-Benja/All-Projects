@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+{% load timetable_tags %}
+
+{% block title %}{{ timetable_type }} Timetable: {{ item_name }}{% endblock %}
+
+{% block content %}
+<div class="card shadow-lg border-0">
+    <div class="card-header bg-white pb-0 border-0">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <div>
+                <h1 class="h3 mb-0">{{ timetable_type }} Timetable</h1>
+                <p class="h2 text-primary fw-bold">{{ item_name }}</p>
+            </div>
+            <div class="btn-group">
+                <a href="{% url 'dashboard' %}" class="btn btn-outline-dark me-2">
+                    <i class="fas fa-arrow-left me-1"></i>Back
+                </a>
+                {% if timetable_type == 'Class' %}
+                    <a href="{% url 'export_class_pdf' item_id %}" class="btn btn-outline-danger">
+                        <i class="fas fa-file-pdf me-2"></i>Export PDF
+                    </a>
+                    <a href="{% url 'export_class_excel' item_id %}" class="btn btn-outline-success">
+                        <i class="fas fa-file-excel me-2"></i>Export Excel
+                    </a>
+                {% elif timetable_type == 'Teacher' %}
+                    <a href="{% url 'export_teacher_pdf' item_id %}" class="btn btn-outline-danger">
+                        <i class="fas fa-file-pdf me-2"></i>Export PDF
+                    </a>
+                    <a href="{% url 'export_teacher_excel' item_id %}" class="btn btn-outline-success">
+                        <i class="fas fa-file-excel me-2"></i>Export Excel
+                    </a>
+                {% endif %}
+                <button onclick="window.print()" class="btn btn-outline-primary">
+                    <i class="fas fa-print me-2"></i>Print
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered text-center" style="min-width: 900px;">
+                <thead class="table-light">
+                    <tr>
+                        <th style="width: 10%;">Day / Time</th>
+                        {% for slot in slots %}
+                            <th style="min-width: 100px;">
+                                {{ slot.start_time|time:"H:i" }} - {{ slot.end_time|time:"H:i" }}
+                            </th>
+                        {% endfor %}
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for day in days %}
+                    <tr>
+                        <th class="bg-light align-middle">{{ day }}</th>
+                        {% for slot in slots %}
+                            <td class="p-1 align-middle">
+                                {% with lesson=grid|get_item:day|get_item:slot %}
+                                    {% if lesson %}
+                                        <div class="lesson-cell h-100 p-2 rounded d-flex flex-column justify-content-center"
+                                             style="background-color: #f0f8ff;">
+                                            <strong class="text-dark">{{ lesson.subject_allocation.subject.name }}</strong>
+                                            <small class="text-muted">
+                                                {% if timetable_type == 'Class' %}
+                                                    {{ lesson.teacher.name }}
+                                                {% else %}
+                                                    {{ lesson.school_class.name }}
+                                                {% endif %}
+                                            </small>
+                                        </div>
+                                    {% else %}
+                                        <div class="h-100">&nbsp;</div>
+                                    {% endif %}
+                                {% endwith %}
+                            </td>
+                        {% endfor %}
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

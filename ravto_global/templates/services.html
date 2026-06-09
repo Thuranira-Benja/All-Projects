@@ -1,0 +1,81 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Services - RAVTO GLOBAL</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container py-5">
+        <h1 class="text-center mb-5">Our Services</h1>
+        
+        <div class="row">
+            {% for service in services %}
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="card shadow-sm h-100" style="border-radius: 15px; overflow: hidden;">
+                    {% if service.image %}
+                    <img src="{{ service.image.url }}" class="card-img-top img-fluid" alt="{{ service.title }}" style="height: 180px; object-fit: cover; transition: transform .3s;">
+                    {% else %}
+                    <img src="{% static 'default_service.jpg' %}" class="card-img-top img-fluid" alt="No Image" style="height: 180px; object-fit: cover;">
+                    {% endif %}
+                    
+                    <div class="card-body">
+                        <h5 class="card-title">{{ service.title }}</h5>
+                        <p class="card-text">{{ service.description|truncatewords:20 }}</p>
+                        <a href="{% url 'service_detail' service.id %}" class="btn-custom-primary mt-3 d-block text-center">Learn More</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        
+        <div class="text-center mt-5">
+            <a href="{% url 'home' %}" class="btn-custom-success">Return Home</a>
+        </div>
+    </div>
+
+    <style>
+        .card:hover img {
+            transform: scale(1.05);
+        }
+        
+        .btn-custom-primary {
+            display: inline-block;
+            background: linear-gradient(45deg, #007bff, #0056b3);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 30px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-top: 15px;
+        }
+
+        .btn-custom-primary:hover {
+            background: linear-gradient(45deg, #0056b3, #003f7f);
+            transform: translateY(-3px);
+        }
+
+        .btn-custom-success {
+            display: inline-block;
+            background: linear-gradient(45deg, #28a745, #1e7e34);
+            color: white;
+            padding: 14px 28px;
+            border-radius: 30px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+        }
+
+        .btn-custom-success:hover {
+            background: linear-gradient(45deg, #1e7e34, #145c2b);
+            transform: translateY(-3px);
+        }
+    </style>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

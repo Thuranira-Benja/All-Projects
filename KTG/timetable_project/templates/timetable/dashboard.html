@@ -1,0 +1,92 @@
+{% extends 'base.html' %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+
+    {% if generation_success %}
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            ✅ Timetable generated successfully!
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+    {% endif %}
+
+    {% if generation_error %}
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            ⚠️ {{ generation_error }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+    {% endif %}
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1>Dashboard</h1>
+        <div>
+            <a href="/admin/" class="btn btn-outline-dark me-2">
+                <i class="fas fa-user-shield me-1"></i> Admin Panel
+            </a>
+            <form method="post" action="{% url 'generate_timetable' %}" class="d-inline">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-primary">
+                    <i class="fas fa-cogs me-2"></i> Generate Timetable
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- ✅ Admin Setup Guide Button -->
+    <div class="mb-4">
+        <a href="{% url 'admin_guide' %}" class="btn btn-outline-info">
+            <i class="fas fa-book me-2"></i> View Admin Setup Guide
+        </a>
+    </div>
+
+    <hr>
+
+    <div class="row">
+        <div class="col-md-6">
+            <h3>Classes</h3>
+            <ul class="list-group">
+                {% for school_class in classes %}
+                    <li class="list-group-item">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <strong>{{ school_class.name }}</strong>
+                            <div class="btn-group">
+                                <a href="{% url 'view_class_timetable' school_class.id %}" class="btn btn-sm btn-outline-secondary">View</a>
+                                <a href="{% url 'export_class_pdf' school_class.id %}" class="btn btn-sm btn-outline-primary">PDF</a>
+                                <a href="{% url 'export_class_excel' school_class.id %}" class="btn btn-sm btn-outline-success">Excel</a>
+                                <a href="/admin/timetable/schoolclass/{{ school_class.id }}/change/" class="btn btn-sm btn-outline-warning">Edit</a>
+                                <a href="/admin/timetable/schoolclass/{{ school_class.id }}/delete/" class="btn btn-sm btn-outline-danger">Delete</a>
+                            </div>
+                        </div>
+                    </li>
+                {% empty %}
+                    <li class="list-group-item">No classes found.</li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <div class="col-md-6">
+            <h3>Teachers</h3>
+            <ul class="list-group">
+                {% for teacher in teachers %}
+                    <li class="list-group-item">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <strong>{{ teacher.name }}</strong>
+                            <div class="btn-group">
+                                <a href="{% url 'view_teacher_timetable' teacher.id %}" class="btn btn-sm btn-outline-secondary">View</a>
+                                <a href="{% url 'export_teacher_pdf' teacher.id %}" class="btn btn-sm btn-outline-primary">PDF</a>
+                                <a href="{% url 'export_teacher_excel' teacher.id %}" class="btn btn-sm btn-outline-success">Excel</a>
+                                <a href="/admin/timetable/teacher/{{ teacher.id }}/change/" class="btn btn-sm btn-outline-warning">Edit</a>
+                                <a href="/admin/timetable/teacher/{{ teacher.id }}/delete/" class="btn btn-sm btn-outline-danger">Delete</a>
+                            </div>
+                        </div>
+                    </li>
+                {% empty %}
+                    <li class="list-group-item">No teachers found.</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</div>
+{% endblock %}
