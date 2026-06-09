@@ -1,0 +1,477 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Become a Member - Meru Young Professionals{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="register-hero-section">
+    <div class="container">
+        <div class="row justify-content-center text-center">
+            <div class="col-lg-8" data-aos="fade-up">
+                <h1 class="register-hero-title">Join <span class="text-gradient">MYP</span></h1>
+                <p class="register-hero-subtitle">Become part of a community of young professionals</p>
+                <div class="hero-divider"></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Registration Form -->
+<section class="registration-section">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-10" data-aos="fade-up">
+                <div class="registration-card">
+                    <div class="card-header">
+                        <i class="fas fa-user-plus"></i>
+                        <h2>Membership Application</h2>
+                        <p>Fill out the form below to join Meru Young Professionals</p>
+                    </div>
+                    
+                    {% if messages %}
+                        {% for message in messages %}
+                        <div class="alert alert-{{ message.tags }} alert-dismissible fade show m-3" role="alert">
+                            <i class="fas fa-{% if message.tags == 'success' %}check-circle{% elif message.tags == 'error' %}exclamation-circle{% else %}info-circle{% endif %} me-2"></i>
+                            {{ message }}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                        </div>
+                        {% endfor %}
+                    {% endif %}
+                    
+                    <form method="post" action="{% url 'membership:register' %}" class="registration-form">
+                        {% csrf_token %}
+                        
+                        <!-- Personal Information -->
+                        <div class="form-section">
+                            <h3><i class="fas fa-user"></i> Personal Information</h3>
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <label class="form-label">Full Name *</label>
+                                    <input type="text" name="full_name" class="form-control" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label">Email Address *</label>
+                                    <input type="email" name="email" class="form-control" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label">Phone Number *</label>
+                                    <input type="tel" name="phone_number" class="form-control" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label">Date of Birth</label>
+                                    <input type="date" name="date_of_birth" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Professional Information -->
+                        <div class="form-section">
+                            <h3><i class="fas fa-briefcase"></i> Professional Information</h3>
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <label class="form-label">Profession *</label>
+                                    <input type="text" name="profession" class="form-control" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label">Company/Organization</label>
+                                    <input type="text" name="company" class="form-control">
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label">Job Title</label>
+                                    <input type="text" name="job_title" class="form-control">
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label">Years of Experience</label>
+                                    <input type="number" name="experience_years" class="form-control" min="0" value="0">
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Education -->
+                        <div class="form-section">
+                            <h3><i class="fas fa-graduation-cap"></i> Education</h3>
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <label class="form-label">Highest Qualification</label>
+                                    <select name="highest_qualification" class="form-select">
+                                        <option value="">Select</option>
+                                        <option value="Certificate">Certificate</option>
+                                        <option value="Diploma">Diploma</option>
+                                        <option value="Bachelor's Degree">Bachelor's Degree</option>
+                                        <option value="Master's Degree">Master's Degree</option>
+                                        <option value="PhD">PhD</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label">Institution</label>
+                                    <input type="text" name="institution" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Membership Details -->
+                        <div class="form-section">
+                            <h3><i class="fas fa-id-card"></i> Membership Details</h3>
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <label class="form-label">Membership Type *</label>
+                                    <select name="membership_type" class="form-select" required>
+                                        <option value="student">🎓 Student (Free)</option>
+                                        <option value="professional">💼 Professional (KES 5,000/year)</option>
+                                        <option value="corporate">🏢 Corporate (KES 25,000/year)</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label">Preferred Department</label>
+                                    <select name="department" class="form-select">
+                                        <option value="">Select department</option>
+                                        <option value="Leadership & Governance">👑 Leadership & Governance</option>
+                                        <option value="Business & Entrepreneurship">📈 Business & Entrepreneurship</option>
+                                        <option value="Technology & Innovation">💻 Technology & Innovation</option>
+                                        <option value="Agriculture & Environment">🌳 Agriculture & Environment</option>
+                                        <option value="Education & Mentorship">📚 Education & Mentorship</option>
+                                        <option value="Community Development">🤝 Community Development</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Motivation -->
+                        <div class="form-section">
+                            <h3><i class="fas fa-heart"></i> Motivation</h3>
+                            <div class="row g-3">
+                                <div class="col-12">
+                                    <label class="form-label">Why do you want to join MYP? *</label>
+                                    <textarea name="reason_for_joining" class="form-control" rows="3" placeholder="Tell us why you're interested in joining our community..." required></textarea>
+                                </div>
+                                <div class="col-12">
+                                    <label class="form-label">What are your expectations?</label>
+                                    <textarea name="expectations" class="form-control" rows="3" placeholder="What do you hope to achieve as a member?"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Referral -->
+                        <div class="form-section">
+                            <h3><i class="fas fa-share-alt"></i> Referral Information</h3>
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <label class="form-label">How did you hear about us?</label>
+                                    <select name="referral_source" class="form-select">
+                                        <option value="">Select</option>
+                                        <option value="Social Media">📱 Social Media</option>
+                                        <option value="Friend/Colleague">👥 Friend/Colleague</option>
+                                        <option value="Event">🎪 Event</option>
+                                        <option value="Search Engine">🔍 Search Engine</option>
+                                        <option value="Other">📌 Other</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label">Referred by (if any)</label>
+                                    <input type="text" name="referred_by" class="form-control" placeholder="Member name or ID">
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Submit Button - HIGHLY VISIBLE: GREEN + HOVER GOLD -->
+                        <div class="form-actions">
+                            <button type="submit" class="btn-submit">
+                                <i class="fas fa-paper-plane me-2"></i>Submit Application
+                            </button>
+                            <p class="terms-text">
+                                <i class="fas fa-shield-alt me-1"></i> 
+                                By submitting, you agree to our <a href="#">Terms & Conditions</a> and <a href="#">Privacy Policy</a>
+                            </p>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    /* CSS Variables - ensuring all theme colors are defined */
+    :root {
+        --primary-green: #2c7a4b;
+        --green-dark: #1e5a38;
+        --primary-gold: #d4af37;
+        --dark-bg: #1a3a2e;
+        --light-bg: #f8fafc;
+        --heading-font: 'Poppins', 'Inter', system-ui, -apple-system, sans-serif;
+    }
+
+    .register-hero-section {
+        background: linear-gradient(135deg, var(--primary-green) 0%, var(--dark-bg) 100%);
+        padding: 80px 0 60px;
+        margin-top: 80px;
+    }
+    
+    .register-hero-title {
+        font-size: 3rem;
+        font-weight: 800;
+        font-family: var(--heading-font);
+        color: white;
+        margin-bottom: 1rem;
+    }
+    
+    .text-gradient {
+        background: linear-gradient(135deg, var(--primary-gold), #fff);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+    }
+    
+    .register-hero-subtitle {
+        font-size: 1.1rem;
+        color: rgba(255,255,255,0.9);
+    }
+    
+    .hero-divider {
+        width: 80px;
+        height: 3px;
+        background: var(--primary-gold);
+        margin: 20px auto 0;
+        border-radius: 3px;
+    }
+    
+    .registration-section {
+        padding: 60px 0 80px;
+        background: var(--light-bg);
+    }
+    
+    .registration-card {
+        background: white;
+        border-radius: 24px;
+        box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+        overflow: hidden;
+    }
+    
+    .card-header {
+        background: linear-gradient(135deg, var(--primary-green), var(--green-dark));
+        padding: 2rem;
+        text-align: center;
+        color: white;
+    }
+    
+    .card-header i {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+    }
+    
+    .card-header h2 {
+        font-size: 1.8rem;
+        font-weight: 700;
+        margin-bottom: 0.5rem;
+    }
+    
+    .card-header p {
+        opacity: 0.9;
+        margin: 0;
+    }
+    
+    .registration-form {
+        padding: 2rem;
+    }
+    
+    .form-section {
+        margin-bottom: 2rem;
+        padding-bottom: 2rem;
+        border-bottom: 1px solid #e5e7eb;
+    }
+    
+    .form-section:last-child {
+        border-bottom: none;
+        margin-bottom: 0;
+        padding-bottom: 0;
+    }
+    
+    .form-section h3 {
+        font-size: 1.2rem;
+        font-weight: 700;
+        margin-bottom: 1.5rem;
+        color: var(--primary-green);
+    }
+    
+    .form-section h3 i {
+        margin-right: 0.5rem;
+    }
+    
+    .form-label {
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+        color: var(--dark-bg);
+        font-size: 0.85rem;
+    }
+    
+    .form-control, .form-select {
+        border: 1px solid #e5e7eb;
+        border-radius: 12px;
+        padding: 0.75rem 1rem;
+        transition: all 0.3s ease;
+        width: 100%;
+        font-size: 0.9rem;
+    }
+    
+    .form-control:focus, .form-select:focus {
+        outline: none;
+        border-color: var(--primary-green);
+        box-shadow: 0 0 0 3px rgba(10,125,59,0.1);
+    }
+    
+    textarea.form-control {
+        resize: vertical;
+        font-family: inherit;
+    }
+    
+    /* =============================================== */
+    /* SUBMIT BUTTON - GREEN + GOLD ON HOVER          */
+    /* HIGHLY VISIBLE, EYE-CATCHING DESIGN            */
+    /* =============================================== */
+    .form-actions {
+        text-align: center;
+        margin-top: 2rem;
+        padding-top: 1rem;
+    }
+    
+    .btn-submit {
+        background: #2c7a4b;      /* Solid vibrant green - highly visible */
+        color: white;
+        border: none;
+        padding: 1rem 2.5rem;
+        border-radius: 50px;
+        font-weight: 700;
+        font-size: 1.1rem;
+        transition: all 0.3s ease;
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.75rem;
+        box-shadow: 0 4px 15px rgba(44, 122, 75, 0.35);
+        position: relative;
+        overflow: hidden;
+    }
+    
+    /* Shine animation overlay (adds premium feel, doesn't affect gold hover) */
+    .btn-submit::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+        transition: left 0.5s;
+    }
+    
+    .btn-submit:hover::before {
+        left: 100%;
+    }
+    
+    /* GOLD HOVER - exactly as requested */
+    .btn-submit:hover {
+        background: #d4af37;      /* Rich metallic gold */
+        transform: translateY(-3px);
+        box-shadow: 0 8px 25px rgba(212, 175, 55, 0.45);
+        color: #1e2a2a;           /* Dark text for contrast on gold */
+    }
+    
+    .btn-submit:active {
+        transform: translateY(0);
+    }
+    
+    .terms-text {
+        font-size: 0.75rem;
+        color: #6B7280;
+        margin-top: 1rem;
+    }
+    
+    .terms-text a {
+        color: var(--primary-green);
+        text-decoration: none;
+    }
+    
+    .terms-text a:hover {
+        text-decoration: underline;
+    }
+    
+    .alert {
+        border-radius: 12px;
+        margin: 1rem;
+    }
+    
+    /* Responsive */
+    @media (max-width: 992px) {
+        .register-hero-title {
+            font-size: 2.5rem;
+        }
+    }
+    
+    @media (max-width: 768px) {
+        .register-hero-section {
+            margin-top: 70px;
+            padding: 60px 0 40px;
+        }
+        
+        .register-hero-title {
+            font-size: 2rem;
+        }
+        
+        .card-header h2 {
+            font-size: 1.3rem;
+        }
+        
+        .registration-form {
+            padding: 1.5rem;
+        }
+        
+        .form-section h3 {
+            font-size: 1rem;
+        }
+        
+        .btn-submit {
+            padding: 0.75rem 2rem;
+            font-size: 1rem;
+            width: 100%;
+            justify-content: center;
+        }
+    }
+    
+    /* Small devices */
+    @media (max-width: 480px) {
+        .register-hero-title {
+            font-size: 1.75rem;
+        }
+        
+        .card-header {
+            padding: 1.5rem;
+        }
+        
+        .card-header i {
+            font-size: 2.5rem;
+        }
+        
+        .card-header h2 {
+            font-size: 1.2rem;
+        }
+        
+        .form-section {
+            margin-bottom: 1.5rem;
+            padding-bottom: 1.5rem;
+        }
+    }
+</style>
+
+<!-- Ensure AOS animations work if the library is loaded in base.html -->
+<!-- If AOS is not in your base template, add these lines -->
+{% if not 'AOS' in request.session %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        if (typeof AOS !== 'undefined') {
+            AOS.init({ duration: 800, once: true });
+        }
+    });
+</script>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,339 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Apply for Leadership - Meru Young Professionals{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="apply-hero-section">
+    <div class="container">
+        <div class="row justify-content-center text-center">
+            <div class="col-lg-8" data-aos="fade-up">
+                <h1 class="apply-hero-title">Apply for <span class="text-gradient">Leadership</span></h1>
+                <p class="apply-hero-subtitle">Take the next step in your leadership journey</p>
+                <div class="hero-divider"></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Application Form Section -->
+<section class="application-section">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8" data-aos="fade-up">
+                <div class="application-card">
+                    <div class="card-header">
+                        <i class="fas fa-clipboard-list"></i>
+                        <h2>Leadership Application Form</h2>
+                        <p>Complete the form below to apply for a leadership position at MYP</p>
+                    </div>
+                    
+                    <form method="post" action="{% url 'core:leadership_apply_submit' %}" class="application-form">
+                        {% csrf_token %}
+                        
+                        <!-- Personal Information -->
+                        <div class="form-section">
+                            <h3><i class="fas fa-user"></i> Personal Information</h3>
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <label class="form-label">Full Name *</label>
+                                    <input type="text" name="full_name" class="form-control" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label">Email Address *</label>
+                                    <input type="email" name="email" class="form-control" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label">Phone Number *</label>
+                                    <input type="tel" name="phone" class="form-control" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label">Current Occupation *</label>
+                                    <input type="text" name="occupation" class="form-control" required>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Leadership Position -->
+                        <div class="form-section">
+                            <h3><i class="fas fa-bullhorn"></i> Leadership Position</h3>
+                            <div class="row g-3">
+                                <div class="col-md-12">
+                                    <label class="form-label">Position Applying For *</label>
+                                    <select name="position" class="form-select" required>
+                                        <option value="">Select a position</option>
+                                        <option value="executive_council">Executive Council Member</option>
+                                        <option value="department_head">Department Head</option>
+                                        <option value="project_lead">Project Lead</option>
+                                        <option value="committee_member">Committee Member</option>
+                                        <option value="other">Other Leadership Role</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-12">
+                                    <label class="form-label">Preferred Department</label>
+                                    <select name="department" class="form-select">
+                                        <option value="">Select department (if applicable)</option>
+                                        <option value="leadership">Leadership & Governance</option>
+                                        <option value="business">Business & Entrepreneurship</option>
+                                        <option value="technology">Technology & Innovation</option>
+                                        <option value="agriculture">Agriculture & Environment</option>
+                                        <option value="education">Education & Mentorship</option>
+                                        <option value="community">Community Development</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Experience & Skills -->
+                        <div class="form-section">
+                            <h3><i class="fas fa-chart-line"></i> Experience & Skills</h3>
+                            <div class="row g-3">
+                                <div class="col-md-12">
+                                    <label class="form-label">Relevant Experience *</label>
+                                    <textarea name="experience" class="form-control" rows="4" placeholder="Describe your leadership experience, previous roles, and achievements..." required></textarea>
+                                </div>
+                                <div class="col-md-12">
+                                    <label class="form-label">Key Skills</label>
+                                    <textarea name="skills" class="form-control" rows="3" placeholder="List your key skills (e.g., project management, public speaking, strategic planning)"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Motivation -->
+                        <div class="form-section">
+                            <h3><i class="fas fa-heart"></i> Motivation</h3>
+                            <div class="row g-3">
+                                <div class="col-md-12">
+                                    <label class="form-label">Why do you want to lead at MYP? *</label>
+                                    <textarea name="motivation" class="form-control" rows="4" placeholder="Explain why you're interested in this leadership role and what you hope to achieve..." required></textarea>
+                                </div>
+                                <div class="col-md-12">
+                                    <label class="form-label">What impact do you want to create? *</label>
+                                    <textarea name="impact" class="form-control" rows="3" placeholder="Describe the positive change you want to bring to MYP and the community..." required></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Additional Information -->
+                        <div class="form-section">
+                            <h3><i class="fas fa-plus-circle"></i> Additional Information</h3>
+                            <div class="row g-3">
+                                <div class="col-md-12">
+                                    <label class="form-label">Availability (Hours per week) *</label>
+                                    <select name="availability" class="form-select" required>
+                                        <option value="">Select availability</option>
+                                        <option value="5-10">5-10 hours per week</option>
+                                        <option value="10-15">10-15 hours per week</option>
+                                        <option value="15-20">15-20 hours per week</option>
+                                        <option value="20+">20+ hours per week</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-12">
+                                    <label class="form-label">Additional Comments</label>
+                                    <textarea name="comments" class="form-control" rows="3" placeholder="Any additional information you'd like to share..."></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Submit Button -->
+                        <div class="form-actions">
+                            <button type="submit" class="btn btn-primary btn-lg">
+                                <i class="fas fa-paper-plane me-2"></i>Submit Application
+                            </button>
+                            <a href="{% url 'core:leadership' %}" class="btn btn-outline-secondary">
+                                <i class="fas fa-arrow-left me-2"></i>Back to Leadership
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    .apply-hero-section {
+        background: linear-gradient(135deg, var(--primary-green) 0%, var(--dark-bg) 100%);
+        padding: 80px 0 60px;
+        margin-top: 80px;
+    }
+    
+    .apply-hero-title {
+        font-size: 3rem;
+        font-weight: 800;
+        font-family: var(--heading-font);
+        color: white;
+        margin-bottom: 1rem;
+    }
+    
+    .text-gradient {
+        background: linear-gradient(135deg, var(--primary-gold), #fff);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+    }
+    
+    .apply-hero-subtitle {
+        font-size: 1.1rem;
+        color: rgba(255,255,255,0.9);
+    }
+    
+    .hero-divider {
+        width: 80px;
+        height: 3px;
+        background: var(--primary-gold);
+        margin: 20px auto 0;
+        border-radius: 3px;
+    }
+    
+    .application-section {
+        padding: 60px 0 80px;
+        background: var(--light-bg);
+    }
+    
+    .application-card {
+        background: white;
+        border-radius: 24px;
+        box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+        overflow: hidden;
+    }
+    
+    .card-header {
+        background: linear-gradient(135deg, var(--primary-green), var(--green-dark));
+        padding: 2rem;
+        text-align: center;
+        color: white;
+    }
+    
+    .card-header i {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+    }
+    
+    .card-header h2 {
+        font-size: 1.8rem;
+        font-weight: 700;
+        margin-bottom: 0.5rem;
+    }
+    
+    .card-header p {
+        opacity: 0.9;
+        margin: 0;
+    }
+    
+    .application-form {
+        padding: 2rem;
+    }
+    
+    .form-section {
+        margin-bottom: 2rem;
+        padding-bottom: 2rem;
+        border-bottom: 1px solid #e5e7eb;
+    }
+    
+    .form-section:last-child {
+        border-bottom: none;
+        margin-bottom: 0;
+        padding-bottom: 0;
+    }
+    
+    .form-section h3 {
+        font-size: 1.2rem;
+        font-weight: 700;
+        margin-bottom: 1.5rem;
+        color: var(--primary-green);
+    }
+    
+    .form-section h3 i {
+        margin-right: 0.5rem;
+    }
+    
+    .form-label {
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+        color: var(--dark-bg);
+    }
+    
+    .form-control, .form-select {
+        border: 1px solid #e5e7eb;
+        border-radius: 12px;
+        padding: 0.75rem 1rem;
+        transition: all 0.3s ease;
+    }
+    
+    .form-control:focus, .form-select:focus {
+        border-color: var(--primary-green);
+        box-shadow: 0 0 0 3px rgba(10,125,59,0.1);
+    }
+    
+    textarea.form-control {
+        resize: vertical;
+    }
+    
+    .form-actions {
+        display: flex;
+        gap: 1rem;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 2rem;
+        padding-top: 1rem;
+    }
+    
+    .btn-primary {
+        background: var(--primary-green);
+        border: none;
+        padding: 0.75rem 2rem;
+        border-radius: 50px;
+        font-weight: 600;
+        transition: all 0.3s ease;
+    }
+    
+    .btn-primary:hover {
+        background: var(--green-dark);
+        transform: translateY(-2px);
+    }
+    
+    .btn-outline-secondary {
+        border: 2px solid #e5e7eb;
+        color: #6B7280;
+        padding: 0.75rem 2rem;
+        border-radius: 50px;
+        font-weight: 600;
+        transition: all 0.3s ease;
+    }
+    
+    .btn-outline-secondary:hover {
+        border-color: var(--primary-green);
+        color: var(--primary-green);
+        transform: translateY(-2px);
+    }
+    
+    @media (max-width: 768px) {
+        .apply-hero-section {
+            margin-top: 70px;
+            padding: 60px 0 40px;
+        }
+        
+        .apply-hero-title {
+            font-size: 2rem;
+        }
+        
+        .card-header h2 {
+            font-size: 1.3rem;
+        }
+        
+        .application-form {
+            padding: 1.5rem;
+        }
+        
+        .form-actions {
+            flex-direction: column;
+        }
+        
+        .form-actions .btn {
+            width: 100%;
+        }
+    }
+</style>
+{% endblock %}

@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Constitution{% endblock %}
+
+{% block content %}
+<section class="container py-5">
+    <div class="section-header" data-aos="fade-up">
+        <h1>Our <span>Constitution</span></h1>
+        <p>The governing document of Meru Young Professionals</p>
+    </div>
+    
+    <div class="row">
+        <div class="col-lg-8 mx-auto">
+            <div class="glass-card p-5 text-center">
+                <i class="fas fa-file-pdf fa-4x mb-4" style="color: var(--myp-green);"></i>
+                <h4>{{ constitution.title|default:"MYP Constitution" }}</h4>
+                <p class="text-muted">Version: {{ constitution.version|default:"1.0" }}</p>
+                
+                {% if constitution and constitution.pdf_file %}
+                    <a href="{{ constitution.pdf_file.url }}" class="btn-myp mt-3" download>
+                        <i class="fas fa-download me-2"></i>Download PDF
+                    </a>
+                {% else %}
+                    <p class="text-muted mt-3">The constitution will be available for download soon.</p>
+                    <div class="alert alert-info mt-4">
+                        <i class="fas fa-info-circle me-2"></i>
+                        The MYP constitution is currently being reviewed and will be uploaded shortly.
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

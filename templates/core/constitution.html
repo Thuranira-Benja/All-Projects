@@ -1,0 +1,592 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Constitution - Meru Young Professionals{% endblock %}
+
+{% block content %}
+<!-- Hero Section for Constitution Page -->
+<section class="constitution-hero-section">
+    <div class="container">
+        <div class="row justify-content-center text-center">
+            <div class="col-lg-8" data-aos="fade-up">
+                <h1 class="constitution-hero-title">Our <span class="text-gradient">Constitution</span></h1>
+                <p class="constitution-hero-subtitle">The governing document of Meru Young Professionals</p>
+                <div class="hero-divider"></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Constitution Content Section -->
+<section class="constitution-content-section">
+    <div class="container">
+        <div class="row g-5">
+            <!-- Sidebar Navigation -->
+            <div class="col-lg-3" data-aos="fade-right">
+                <div class="constitution-sidebar">
+                    <div class="sidebar-header">
+                        <i class="fas fa-book"></i>
+                        <h3>Constitution Info</h3>
+                    </div>
+                    
+                    <div class="constitution-meta">
+                        <div class="meta-item">
+                            <i class="fas fa-file-alt"></i>
+                            <div>
+                                <span>Title</span>
+                                <strong>{{ constitution.title|default:"MYP Constitution" }}</strong>
+                            </div>
+                        </div>
+                        <div class="meta-item">
+                            <i class="fas fa-code-branch"></i>
+                            <div>
+                                <span>Version</span>
+                                <strong>{{ constitution.version|default:"1.0" }}</strong>
+                            </div>
+                        </div>
+                        <div class="meta-item">
+                            <i class="fas fa-calendar-alt"></i>
+                            <div>
+                                <span>Effective Date</span>
+                                <strong>{{ constitution.effective_date|default:"Not specified" }}</strong>
+                            </div>
+                        </div>
+                        <div class="meta-item">
+                            <i class="fas fa-check-circle"></i>
+                            <div>
+                                <span>Status</span>
+                                <strong class="status-active">Active</strong>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Download Options -->
+                    <div class="download-section">
+                        <div class="download-header">
+                            <i class="fas fa-download"></i>
+                            <span>Download Constitution</span>
+                        </div>
+                        
+                        {% if constitution and constitution.pdf_file %}
+                        <a href="{{ constitution.pdf_file.url }}" class="btn-download pdf-download" download>
+                            <i class="fas fa-file-pdf"></i>
+                            <div>
+                                <strong>Download PDF Version</strong>
+                                <small>Click to download</small>
+                            </div>
+                        </a>
+                        {% else %}
+                        <div class="no-pdf-message">
+                            <i class="fas fa-info-circle"></i>
+                            <p>PDF version coming soon. Please check back later.</p>
+                        </div>
+                        {% endif %}
+                        
+                        <a href="#" class="btn-download print-download" onclick="window.print(); return false;">
+                            <i class="fas fa-print"></i>
+                            <div>
+                                <strong>Print Constitution</strong>
+                                <small>Print a copy</small>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Main Content - Read Online -->
+            <div class="col-lg-9" data-aos="fade-left">
+                <div class="constitution-main" id="readOnline">
+                    <div class="online-reading-header">
+                        <h2><i class="fas fa-file-alt"></i> {{ constitution.title|default:"Constitution of Meru Young Professionals" }}</h2>
+                        <p class="effective-date">Effective Date: {{ constitution.effective_date|default:"Not specified" }} | Version: {{ constitution.version|default:"1.0" }}</p>
+                    </div>
+                    
+                    {% if constitution and constitution.content %}
+                    <!-- Dynamic content from admin - Read Online -->
+                    <div class="constitution-content">
+                        {{ constitution.content|safe }}
+                    </div>
+                    {% else %}
+                    <!-- Message when no constitution content is uploaded -->
+                    <div class="no-content-message">
+                        <i class="fas fa-file-alt"></i>
+                        <h3>Constitution Content Not Yet Available</h3>
+                        <p>The constitution document is currently being prepared and will be available for online reading soon.</p>
+                        <p>Please check back later.</p>
+                        <div class="contact-info">
+                            <i class="fas fa-envelope"></i>
+                            <span>info@myp.or.ke</span>
+                        </div>
+                    </div>
+                    {% endif %}
+                    
+                    <div class="constitution-footer">
+                        <div class="footer-badge">
+                            <i class="fas fa-check-circle"></i> Official Document
+                        </div>
+                        <p>This constitution is the official governing document of Meru Young Professionals (MYP).</p>
+                        <p>For any questions or clarifications, please contact the Executive Council.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Important Notes Section -->
+<section class="notes-section">
+    <div class="container">
+        <div class="notes-card" data-aos="zoom-in-up">
+            <i class="fas fa-info-circle"></i>
+            <h3>Important Information</h3>
+            <p>This constitution serves as the governing document for Meru Young Professionals. All members, leaders, and partners are expected to adhere to the provisions contained herein.</p>
+            <p><strong>Need a physical copy?</strong> You can download the PDF version using the button on the left, or print this page directly.</p>
+        </div>
+    </div>
+</section>
+
+<style>
+    /* Constitution Hero Section */
+    .constitution-hero-section {
+        background: linear-gradient(135deg, var(--primary-green) 0%, var(--dark-bg) 100%);
+        padding: 80px 0 60px;
+        margin-top: 80px;
+    }
+    
+    .constitution-hero-title {
+        font-size: 3rem;
+        font-weight: 800;
+        font-family: var(--heading-font);
+        color: white;
+        margin-bottom: 1rem;
+    }
+    
+    .text-gradient {
+        background: linear-gradient(135deg, var(--primary-gold), #fff);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+    }
+    
+    .constitution-hero-subtitle {
+        font-size: 1.1rem;
+        color: rgba(255,255,255,0.9);
+    }
+    
+    .hero-divider {
+        width: 80px;
+        height: 3px;
+        background: var(--primary-gold);
+        margin: 20px auto 0;
+    }
+    
+    /* Constitution Content */
+    .constitution-content-section {
+        padding: 60px 0;
+        background: white;
+    }
+    
+    /* Sidebar */
+    .constitution-sidebar {
+        background: var(--light-bg);
+        border-radius: 20px;
+        padding: 1.5rem;
+        position: sticky;
+        top: 100px;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    }
+    
+    .sidebar-header {
+        text-align: center;
+        margin-bottom: 1.5rem;
+        padding-bottom: 1rem;
+        border-bottom: 2px solid var(--primary-green);
+    }
+    
+    .sidebar-header i {
+        font-size: 2rem;
+        color: var(--primary-green);
+        margin-bottom: 0.5rem;
+    }
+    
+    .sidebar-header h3 {
+        font-size: 1.2rem;
+        font-weight: 700;
+        margin: 0;
+    }
+    
+    /* Constitution Meta */
+    .constitution-meta {
+        margin-bottom: 1.5rem;
+    }
+    
+    .meta-item {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        padding: 0.75rem;
+        background: white;
+        border-radius: 12px;
+        margin-bottom: 0.5rem;
+    }
+    
+    .meta-item i {
+        width: 30px;
+        font-size: 1.2rem;
+        color: var(--primary-green);
+    }
+    
+    .meta-item div {
+        flex: 1;
+    }
+    
+    .meta-item span {
+        font-size: 0.65rem;
+        color: #6B7280;
+        display: block;
+    }
+    
+    .meta-item strong {
+        font-size: 0.85rem;
+        display: block;
+    }
+    
+    .status-active {
+        color: var(--primary-green);
+    }
+    
+    /* Download Section */
+    .download-section {
+        padding-top: 1rem;
+        border-top: 1px solid #e5e7eb;
+    }
+    
+    .download-header {
+        text-align: center;
+        margin-bottom: 1rem;
+    }
+    
+    .download-header i {
+        font-size: 1.5rem;
+        color: var(--primary-green);
+        margin-bottom: 0.25rem;
+        display: block;
+    }
+    
+    .download-header span {
+        font-size: 0.9rem;
+        font-weight: 600;
+    }
+    
+    .btn-download {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        padding: 0.75rem 1rem;
+        border-radius: 12px;
+        text-decoration: none;
+        margin-bottom: 0.75rem;
+        transition: all 0.3s ease;
+        background: white;
+        border: 1px solid #e5e7eb;
+        cursor: pointer;
+    }
+    
+    .btn-download:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    
+    .pdf-download {
+        border-left: 4px solid var(--primary-red);
+    }
+    
+    .pdf-download i {
+        font-size: 2rem;
+        color: var(--primary-red);
+    }
+    
+    .print-download {
+        border-left: 4px solid var(--primary-green);
+    }
+    
+    .print-download i {
+        font-size: 2rem;
+        color: var(--primary-green);
+    }
+    
+    .btn-download div strong {
+        display: block;
+        font-size: 0.85rem;
+    }
+    
+    .btn-download div small {
+        font-size: 0.7rem;
+        color: #6B7280;
+    }
+    
+    .no-pdf-message {
+        text-align: center;
+        padding: 1rem;
+        background: white;
+        border-radius: 12px;
+        margin-bottom: 0.75rem;
+    }
+    
+    .no-pdf-message i {
+        font-size: 1.5rem;
+        color: #9CA3AF;
+        margin-bottom: 0.5rem;
+    }
+    
+    .no-pdf-message p {
+        font-size: 0.75rem;
+        color: #6B7280;
+        margin: 0;
+    }
+    
+    /* Main Content - Online Reading */
+    .constitution-main {
+        background: white;
+        border-radius: 20px;
+        padding: 2rem;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        border: 1px solid #f0f0f0;
+    }
+    
+    .online-reading-header {
+        text-align: center;
+        margin-bottom: 2rem;
+        padding-bottom: 1rem;
+        border-bottom: 2px solid var(--primary-green);
+    }
+    
+    .online-reading-header h2 {
+        font-size: 1.5rem;
+        font-weight: 800;
+        color: var(--primary-green);
+        margin-bottom: 0.5rem;
+    }
+    
+    .online-reading-header h2 i {
+        margin-right: 0.5rem;
+    }
+    
+    .effective-date {
+        color: #6B7280;
+        font-size: 0.85rem;
+    }
+    
+    /* Constitution Content Display */
+    .constitution-content {
+        line-height: 1.8;
+    }
+    
+    .constitution-content h1, .constitution-content h2, .constitution-content h3 {
+        color: var(--primary-green);
+        margin-top: 1.5rem;
+        margin-bottom: 1rem;
+        font-family: var(--heading-font);
+    }
+    
+    .constitution-content h1 {
+        font-size: 1.8rem;
+    }
+    
+    .constitution-content h2 {
+        font-size: 1.5rem;
+    }
+    
+    .constitution-content h3 {
+        font-size: 1.2rem;
+    }
+    
+    .constitution-content p {
+        color: #4B5563;
+        margin-bottom: 1rem;
+    }
+    
+    .constitution-content ul, .constitution-content ol {
+        margin-left: 1.5rem;
+        margin-bottom: 1rem;
+    }
+    
+    .constitution-content li {
+        color: #4B5563;
+        margin-bottom: 0.5rem;
+    }
+    
+    .constitution-content strong {
+        color: var(--dark-bg);
+    }
+    
+    /* No Content Message */
+    .no-content-message {
+        text-align: center;
+        padding: 3rem;
+    }
+    
+    .no-content-message i {
+        font-size: 4rem;
+        color: var(--primary-green);
+        opacity: 0.5;
+        margin-bottom: 1rem;
+    }
+    
+    .no-content-message h3 {
+        font-size: 1.3rem;
+        font-weight: 700;
+        margin-bottom: 0.5rem;
+    }
+    
+    .no-content-message p {
+        color: #6B7280;
+        margin-bottom: 0.5rem;
+    }
+    
+    .contact-info {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        margin-top: 1rem;
+        padding: 0.5rem 1rem;
+        background: var(--light-bg);
+        border-radius: 50px;
+    }
+    
+    .contact-info i {
+        font-size: 1rem;
+        margin: 0;
+        opacity: 1;
+    }
+    
+    .constitution-footer {
+        margin-top: 2rem;
+        padding-top: 2rem;
+        border-top: 2px solid var(--primary-green);
+        text-align: center;
+    }
+    
+    .footer-badge {
+        display: inline-block;
+        background: var(--primary-green);
+        color: white;
+        padding: 0.25rem 1rem;
+        border-radius: 50px;
+        font-size: 0.8rem;
+        margin-bottom: 1rem;
+    }
+    
+    .footer-badge i {
+        margin-right: 0.25rem;
+    }
+    
+    .constitution-footer p {
+        font-size: 0.85rem;
+        color: #6B7280;
+        margin-bottom: 0.25rem;
+    }
+    
+    /* Notes Section */
+    .notes-section {
+        padding: 0 24px 80px;
+    }
+    
+    .notes-card {
+        background: linear-gradient(135deg, var(--light-bg), white);
+        padding: 2rem;
+        border-radius: 20px;
+        text-align: center;
+        border-left: 4px solid var(--primary-green);
+        border-right: 4px solid var(--primary-gold);
+    }
+    
+    .notes-card i {
+        font-size: 2rem;
+        color: var(--primary-green);
+        opacity: 0.5;
+        margin-bottom: 1rem;
+    }
+    
+    .notes-card h3 {
+        font-size: 1.2rem;
+        font-weight: 700;
+        margin-bottom: 0.5rem;
+    }
+    
+    .notes-card p {
+        color: #4B5563;
+        line-height: 1.6;
+        margin-bottom: 0.5rem;
+    }
+    
+    /* Print Styles */
+    @media print {
+        .navbar, .footer, .constitution-sidebar, .notes-section, .hero-divider, .constitution-hero-section, .cta-section-wrapper {
+            display: none !important;
+        }
+        
+        .constitution-main {
+            margin: 0;
+            padding: 0;
+            box-shadow: none;
+        }
+    
+        .constitution-content-section {
+            padding: 0;
+        }
+        
+        .container {
+            max-width: 100%;
+            padding: 0;
+        }
+        
+        body {
+            background: white;
+        }
+        
+        .online-reading-header h2 {
+            color: black;
+        }
+        
+        .constitution-content h1, .constitution-content h2, .constitution-content h3 {
+            color: black;
+        }
+    }
+    
+    /* Responsive */
+    @media (max-width: 992px) {
+        .constitution-sidebar {
+            position: relative;
+            top: 0;
+            margin-bottom: 2rem;
+        }
+    }
+    
+    @media (max-width: 768px) {
+        .constitution-hero-section {
+            margin-top: 70px;
+        }
+        
+        .constitution-hero-title {
+            font-size: 2rem;
+        }
+        
+        .constitution-main {
+            padding: 1.5rem;
+        }
+        
+        .online-reading-header h2 {
+            font-size: 1.2rem;
+        }
+        
+        .notes-card {
+            padding: 1.5rem;
+        }
+        
+        .no-content-message {
+            padding: 1.5rem;
+        }
+    }
+</style>
+{% endblock %}

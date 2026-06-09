@@ -1,0 +1,357 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Submit Project Proposal - Meru Young Professionals{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="proposal-hero-section">
+    <div class="container">
+        <div class="row justify-content-center text-center">
+            <div class="col-lg-8" data-aos="fade-up">
+                <h1 class="proposal-hero-title">Submit <span class="text-gradient">Project Proposal</span></h1>
+                <p class="proposal-hero-subtitle">Share your innovative ideas with us</p>
+                <div class="hero-divider"></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Proposal Form Section -->
+<section class="proposal-form-section">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8" data-aos="fade-up">
+                <div class="proposal-card">
+                    <div class="card-header">
+                        <i class="fas fa-lightbulb"></i>
+                        <h2>Project Proposal Form</h2>
+                        <p>Fill out the form below to submit your project idea</p>
+                    </div>
+                    
+                    <form method="post" action="{% url 'core:submit_proposal' %}" class="proposal-form">
+                        {% csrf_token %}
+                        
+                        <!-- Personal Information -->
+                        <div class="form-section">
+                            <h3><i class="fas fa-user"></i> Your Information</h3>
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <label class="form-label">Full Name *</label>
+                                    <input type="text" name="full_name" class="form-control" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label">Email Address *</label>
+                                    <input type="email" name="email" class="form-control" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label">Phone Number</label>
+                                    <input type="tel" name="phone" class="form-control">
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label">MYP Membership Number (if applicable)</label>
+                                    <input type="text" name="membership_id" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Project Information -->
+                        <div class="form-section">
+                            <h3><i class="fas fa-project-diagram"></i> Project Information</h3>
+                            <div class="row g-3">
+                                <div class="col-md-12">
+                                    <label class="form-label">Project Title *</label>
+                                    <input type="text" name="project_title" class="form-control" required>
+                                </div>
+                                <div class="col-md-12">
+                                    <label class="form-label">Project Category *</label>
+                                    <select name="project_category" class="form-select" required>
+                                        <option value="">Select a category</option>
+                                        <option value="Environment">Environment & Conservation</option>
+                                        <option value="Education">Education & Mentorship</option>
+                                        <option value="Community">Community Development</option>
+                                        <option value="Technology">Technology & Innovation</option>
+                                        <option value="Entrepreneurship">Entrepreneurship</option>
+                                        <option value="Health">Health & Wellness</option>
+                                        <option value="Other">Other</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-12">
+                                    <label class="form-label">Project Description *</label>
+                                    <textarea name="project_description" class="form-control" rows="5" placeholder="Describe your project idea, goals, and expected outcomes..." required></textarea>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label">Target Location *</label>
+                                    <input type="text" name="location" class="form-control" placeholder="e.g., Meru County, Nairobi" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label">Estimated Duration</label>
+                                    <select name="duration" class="form-select">
+                                        <option value="">Select duration</option>
+                                        <option value="1-3 months">1-3 months</option>
+                                        <option value="3-6 months">3-6 months</option>
+                                        <option value="6-12 months">6-12 months</option>
+                                        <option value="12+ months">12+ months</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Impact & Resources -->
+                        <div class="form-section">
+                            <h3><i class="fas fa-chart-line"></i> Impact & Resources</h3>
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <label class="form-label">Expected Beneficiaries</label>
+                                    <input type="number" name="beneficiaries" class="form-control" placeholder="Number of people to benefit">
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label">Estimated Budget (KSH)</label>
+                                    <input type="number" name="budget" class="form-control" placeholder="Estimated budget in Kenyan Shillings">
+                                </div>
+                                <div class="col-md-12">
+                                    <label class="form-label">Resources Needed</label>
+                                    <textarea name="resources" class="form-control" rows="3" placeholder="List any resources, equipment, or support needed..."></textarea>
+                                </div>
+                                <div class="col-md-12">
+                                    <label class="form-label">Partners/Collaborators</label>
+                                    <textarea name="partners" class="form-control" rows="2" placeholder="Any organizations or individuals you plan to collaborate with..."></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Timeline -->
+                        <div class="form-section">
+                            <h3><i class="fas fa-calendar-alt"></i> Proposed Timeline</h3>
+                            <div class="row g-3">
+                                <div class="col-md-12">
+                                    <label class="form-label">Proposed Start Date</label>
+                                    <input type="date" name="start_date" class="form-control">
+                                </div>
+                                <div class="col-md-12">
+                                    <label class="form-label">Key Milestones</label>
+                                    <textarea name="milestones" class="form-control" rows="3" placeholder="List key milestones and expected completion dates..."></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Additional Information -->
+                        <div class="form-section">
+                            <h3><i class="fas fa-plus-circle"></i> Additional Information</h3>
+                            <div class="row g-3">
+                                <div class="col-md-12">
+                                    <label class="form-label">Why should MYP support this project?</label>
+                                    <textarea name="why_support" class="form-control" rows="3" placeholder="Explain why this project aligns with MYP's mission and values..."></textarea>
+                                </div>
+                                <div class="col-md-12">
+                                    <label class="form-label">Previous Experience</label>
+                                    <textarea name="experience" class="form-control" rows="2" placeholder="Describe any relevant experience you have..."></textarea>
+                                </div>
+                                <div class="col-md-12">
+                                    <label class="form-label">Additional Comments</label>
+                                    <textarea name="comments" class="form-control" rows="2" placeholder="Any other information you'd like to share..."></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Submit Button -->
+                        <div class="form-actions">
+                            <button type="submit" class="btn btn-primary btn-lg">
+                                <i class="fas fa-paper-plane me-2"></i>Submit Proposal
+                            </button>
+                            <a href="{% url 'core:projects' %}" class="btn btn-outline-secondary">
+                                <i class="fas fa-arrow-left me-2"></i>Back to Projects
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    .proposal-hero-section {
+        background: linear-gradient(135deg, var(--primary-green) 0%, var(--dark-bg) 100%);
+        padding: 80px 0 60px;
+        margin-top: 80px;
+    }
+    
+    .proposal-hero-title {
+        font-size: 2.5rem;
+        font-weight: 800;
+        font-family: var(--heading-font);
+        color: white;
+        margin-bottom: 1rem;
+    }
+    
+    .text-gradient {
+        background: linear-gradient(135deg, var(--primary-gold), #fff);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+    }
+    
+    .proposal-hero-subtitle {
+        font-size: 1.1rem;
+        color: rgba(255,255,255,0.9);
+    }
+    
+    .hero-divider {
+        width: 80px;
+        height: 3px;
+        background: var(--primary-gold);
+        margin: 20px auto 0;
+    }
+    
+    .proposal-form-section {
+        padding: 60px 0 80px;
+        background: var(--light-bg);
+    }
+    
+    .proposal-card {
+        background: white;
+        border-radius: 24px;
+        box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+        overflow: hidden;
+    }
+    
+    .card-header {
+        background: linear-gradient(135deg, var(--primary-green), var(--green-dark));
+        padding: 2rem;
+        text-align: center;
+        color: white;
+    }
+    
+    .card-header i {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+    }
+    
+    .card-header h2 {
+        font-size: 1.8rem;
+        font-weight: 700;
+        margin-bottom: 0.5rem;
+    }
+    
+    .card-header p {
+        opacity: 0.9;
+        margin: 0;
+    }
+    
+    .proposal-form {
+        padding: 2rem;
+    }
+    
+    .form-section {
+        margin-bottom: 2rem;
+        padding-bottom: 2rem;
+        border-bottom: 1px solid #e5e7eb;
+    }
+    
+    .form-section:last-child {
+        border-bottom: none;
+        margin-bottom: 0;
+        padding-bottom: 0;
+    }
+    
+    .form-section h3 {
+        font-size: 1.2rem;
+        font-weight: 700;
+        margin-bottom: 1.5rem;
+        color: var(--primary-green);
+    }
+    
+    .form-section h3 i {
+        margin-right: 0.5rem;
+    }
+    
+    .form-label {
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+        color: var(--dark-bg);
+    }
+    
+    .form-control, .form-select {
+        border: 1px solid #e5e7eb;
+        border-radius: 12px;
+        padding: 0.75rem 1rem;
+        transition: all 0.3s ease;
+    }
+    
+    .form-control:focus, .form-select:focus {
+        border-color: var(--primary-green);
+        box-shadow: 0 0 0 3px rgba(10,125,59,0.1);
+    }
+    
+    textarea.form-control {
+        resize: vertical;
+    }
+    
+    .form-actions {
+        display: flex;
+        gap: 1rem;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 2rem;
+        padding-top: 1rem;
+    }
+    
+    .btn-primary {
+        background: var(--primary-green);
+        border: none;
+        padding: 0.75rem 2rem;
+        border-radius: 50px;
+        font-weight: 600;
+        transition: all 0.3s ease;
+    }
+    
+    .btn-primary:hover {
+        background: var(--green-dark);
+        transform: translateY(-2px);
+    }
+    
+    .btn-outline-secondary {
+        border: 2px solid #e5e7eb;
+        color: #6B7280;
+        padding: 0.75rem 2rem;
+        border-radius: 50px;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        background: transparent;
+        text-decoration: none;
+    }
+    
+    .btn-outline-secondary:hover {
+        border-color: var(--primary-green);
+        color: var(--primary-green);
+        transform: translateY(-2px);
+    }
+    
+    @media (max-width: 768px) {
+        .proposal-hero-section {
+            margin-top: 70px;
+        }
+        
+        .proposal-hero-title {
+            font-size: 1.8rem;
+        }
+        
+        .card-header h2 {
+            font-size: 1.3rem;
+        }
+        
+        .proposal-form {
+            padding: 1.5rem;
+        }
+        
+        .form-actions {
+            flex-direction: column;
+        }
+        
+        .form-actions .btn {
+            width: 100%;
+        }
+    }
+</style>
+{% endblock %}

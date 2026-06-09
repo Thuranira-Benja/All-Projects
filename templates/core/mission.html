@@ -1,0 +1,879 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Mission & Vision - Meru Young Professionals{% endblock %}
+
+{% block content %}
+<!-- Hero Section for Mission Page -->
+<section class="mission-hero-section">
+    <div class="container">
+        <div class="row justify-content-center text-center">
+            <div class="col-lg-8" data-aos="fade-up">
+                <h1 class="mission-hero-title">Our <span class="text-gradient">Purpose</span></h1>
+                <p class="mission-hero-subtitle">Guided by clear principles and a commitment to excellence</p>
+                <div class="hero-divider"></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Mission & Vision Cards Section -->
+<section class="mv-section">
+    <div class="container">
+        <div class="row g-5">
+            <div class="col-lg-6" data-aos="fade-right" data-aos-delay="100">
+                <div class="mission-card-large">
+                    <div class="card-header-icon">
+                        <div class="icon-circle">
+                            <i class="fas fa-bullseye"></i>
+                        </div>
+                        <span class="card-badge">Our Commitment</span>
+                    </div>
+                    <h2 class="card-title">Mission</h2>
+                    <p class="card-text">{{ site_config.mission_text|default:"To empower young professionals through leadership development, innovation, entrepreneurship, mentorship, community service, and sustainable growth." }}</p>
+                    <div class="card-features">
+                        <div class="feature-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Leadership Development</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Innovation & Entrepreneurship</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Mentorship & Service</span>
+                        </div>
+                    </div>
+                    <div class="card-stats">
+                        <div class="stat">
+                            <span class="stat-value">45+</span>
+                            <span class="stat-label">Projects Completed</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-value">1,200+</span>
+                            <span class="stat-label">Lives Impacted</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6" data-aos="fade-left" data-aos-delay="200">
+                <div class="vision-card-large">
+                    <div class="card-header-icon">
+                        <div class="icon-circle">
+                            <i class="fas fa-eye"></i>
+                        </div>
+                        <span class="card-badge">Our Aspiration</span>
+                    </div>
+                    <h2 class="card-title">Vision</h2>
+                    <p class="card-text">{{ site_config.vision_text|default:"To become the leading network of transformative young professionals creating positive impact across Kenya and beyond." }}</p>
+                    <div class="vision-goals">
+                        <div class="goal-item">
+                            <div class="goal-icon">
+                                <i class="fas fa-globe-africa"></i>
+                            </div>
+                            <div class="goal-content">
+                                <h4>Pan-African Reach</h4>
+                                <p>Expand impact across Kenya and beyond</p>
+                            </div>
+                        </div>
+                        <div class="goal-item">
+                            <div class="goal-icon">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <div class="goal-content">
+                                <h4>Sustainable Growth</h4>
+                                <p>Build lasting community transformation</p>
+                            </div>
+                        </div>
+                        <div class="goal-item">
+                            <div class="goal-icon">
+                                <i class="fas fa-handshake"></i>
+                            </div>
+                            <div class="goal-content">
+                                <h4>Strategic Partnerships</h4>
+                                <p>Collaborate with key stakeholders</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Core Values Section - Enhanced -->
+<section class="core-values-section">
+    <div class="container">
+        <div class="section-header text-center" data-aos="fade-up">
+            <h2>Our Core <span>Values</span></h2>
+            <p>The principles that guide every member and every decision</p>
+        </div>
+        <div class="row g-4">
+            {% for value in core_values %}
+            <div class="col-lg-3 col-md-4 col-sm-6" data-aos="zoom-in" data-aos-delay="{{ forloop.counter|add:50 }}">
+                <div class="value-card-modern">
+                    <div class="value-number">{{ forloop.counter }}</div>
+                    <div class="value-content">
+                        <i class="fas {{ value.icon|default:'fa-star' }}"></i>
+                        <h3>{{ value.title }}</h3>
+                        <p>{{ value.description|default:"We uphold this value in all our endeavors." }}</p>
+                    </div>
+                    <div class="value-hover-bg"></div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- Why We Exist Section -->
+<section class="why-exist-section">
+    <div class="container">
+        <div class="row align-items-center g-5">
+            <div class="col-lg-6" data-aos="fade-right">
+                <div class="exist-image">
+                    <img src="{% static 'images/why-exist.jpg' %}" alt="Why We Exist" class="img-fluid rounded-4" onerror="this.src='https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3'">
+                    <div class="image-stats">
+                        <div class="stat-circle">
+                            <span class="number">30+</span>
+                            <span class="label">Communities</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6" data-aos="fade-left">
+                <div class="exist-content">
+                    <h2 class="section-title">Why We <span>Exist</span></h2>
+                    <p class="exist-text">
+                        We exist to bridge the gap between young professionals' potential and their ability to create meaningful change. 
+                        In the Mt. Kenya region and beyond, we provide a platform for collaboration, innovation, and leadership development.
+                    </p>
+                    <p class="exist-text">
+                        Our existence is driven by the need to empower the next generation of leaders who will shape the future of our communities, 
+                        our nation, and our continent.
+                    </p>
+                    <div class="mission-quote">
+                        <i class="fas fa-quote-left"></i>
+                        <p>Creating opportunities, building leaders, transforming communities</p>
+                        <span class="quote-author">— MYP Founding Members</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Strategic Goals Section -->
+<section class="goals-section">
+    <div class="container">
+        <div class="section-header text-center" data-aos="fade-up">
+            <h2>Strategic <span>Goals</span></h2>
+            <p>Our roadmap for creating lasting impact</p>
+        </div>
+        <div class="row g-4">
+            <div class="col-md-4" data-aos="flip-up" data-aos-delay="100">
+                <div class="goal-card">
+                    <div class="goal-number">01</div>
+                    <i class="fas fa-user-graduate"></i>
+                    <h3>Empower Youth</h3>
+                    <p>Equip young professionals with skills, knowledge, and networks for success</p>
+                </div>
+            </div>
+            <div class="col-md-4" data-aos="flip-up" data-aos-delay="200">
+                <div class="goal-card">
+                    <div class="goal-number">02</div>
+                    <i class="fas fa-chalkboard-user"></i>
+                    <h3>Foster Leadership</h3>
+                    <p>Develop transformative leaders who drive positive change in their communities</p>
+                </div>
+            </div>
+            <div class="col-md-4" data-aos="flip-up" data-aos-delay="300">
+                <div class="goal-card">
+                    <div class="goal-number">03</div>
+                    <i class="fas fa-hand-holding-heart"></i>
+                    <h3>Community Impact</h3>
+                    <p>Implement sustainable projects that benefit local communities</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Call to Action -->
+<section class="mv-cta">
+    <div class="container">
+        <div class="cta-wrapper-modern" data-aos="zoom-in-up">
+            <div class="cta-content">
+                <h3>Join Us in Our Mission</h3>
+                <p>Be part of a movement that's shaping the future of young professionals</p>
+                <div class="cta-buttons">
+                    <a href="#" class="btn btn-primary">Become a Member</a>
+                    <a href="#" class="btn btn-outline-light">Partner With Us</a>
+                </div>
+            </div>
+            <div class="cta-decoration">
+                <i class="fas fa-bullseye"></i>
+                <i class="fas fa-eye"></i>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    /* Hero Section */
+    .mission-hero-section {
+        background: linear-gradient(135deg, var(--dark-bg) 0%, var(--primary-green) 100%);
+        padding: 80px 0 60px;
+        position: relative;
+        overflow: hidden;
+        margin-top: 80px;
+    }
+    
+    .mission-hero-section::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320'%3E%3Cpath fill='rgba(255,215,0,0.05)' d='M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,122.7C672,117,768,139,864,154.7C960,171,1056,181,1152,165.3C1248,149,1344,107,1392,85.3L1440,64L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z'%3E%3C/path%3E%3C/svg%3E") repeat-x bottom;
+        background-size: cover;
+        opacity: 0.5;
+        pointer-events: none;
+    }
+    
+    .mission-hero-title {
+        font-size: 3.5rem;
+        font-weight: 800;
+        font-family: var(--heading-font);
+        color: white;
+        margin-bottom: 1rem;
+    }
+    
+    .text-gradient {
+        background: linear-gradient(135deg, var(--primary-gold), #fff);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+    }
+    
+    .mission-hero-subtitle {
+        font-size: 1.1rem;
+        color: rgba(255,255,255,0.9);
+        font-family: var(--alt-font);
+    }
+    
+    .hero-divider {
+        width: 80px;
+        height: 3px;
+        background: var(--primary-gold);
+        margin: 20px auto 0;
+        border-radius: 3px;
+    }
+    
+    /* Mission & Vision Cards */
+    .mv-section {
+        padding: 80px 0;
+        background: white;
+    }
+    
+    .mission-card-large, .vision-card-large {
+        background: white;
+        border-radius: 24px;
+        padding: 2rem;
+        box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+        transition: all 0.3s ease;
+        height: 100%;
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .mission-card-large {
+        border-bottom: 4px solid var(--primary-green);
+    }
+    
+    .vision-card-large {
+        border-bottom: 4px solid var(--primary-gold);
+    }
+    
+    .mission-card-large:hover, .vision-card-large:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 30px 50px rgba(0,0,0,0.12);
+    }
+    
+    .card-header-icon {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    .icon-circle {
+        width: 60px;
+        height: 60px;
+        background: linear-gradient(135deg, var(--primary-green), var(--green-dark));
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .vision-card-large .icon-circle {
+        background: linear-gradient(135deg, var(--primary-gold-dark), var(--primary-gold));
+    }
+    
+    .icon-circle i {
+        font-size: 1.5rem;
+        color: white;
+    }
+    
+    .card-badge {
+        background: var(--light-bg);
+        padding: 0.3rem 1rem;
+        border-radius: 50px;
+        font-size: 0.75rem;
+        font-weight: 600;
+        color: var(--primary-green);
+    }
+    
+    .vision-card-large .card-badge {
+        color: var(--primary-gold-dark);
+    }
+    
+    .card-title {
+        font-size: 2rem;
+        font-weight: 700;
+        font-family: var(--heading-font);
+        margin-bottom: 1rem;
+        color: var(--dark-bg);
+    }
+    
+    .card-text {
+        color: #4B5563;
+        line-height: 1.7;
+        margin-bottom: 1.5rem;
+        font-size: 1rem;
+    }
+    
+    .card-features {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    .feature-item {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+    
+    .feature-item i {
+        color: var(--primary-green);
+        font-size: 0.9rem;
+    }
+    
+    .feature-item span {
+        font-size: 0.85rem;
+        color: #6B7280;
+    }
+    
+    .card-stats {
+        display: flex;
+        gap: 2rem;
+        padding-top: 1rem;
+        border-top: 1px solid #e5e7eb;
+    }
+    
+    .stat {
+        text-align: center;
+    }
+    
+    .stat-value {
+        font-size: 1.3rem;
+        font-weight: 700;
+        color: var(--primary-green);
+        display: block;
+    }
+    
+    .stat-label {
+        font-size: 0.7rem;
+        color: #6B7280;
+    }
+    
+    .vision-goals {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .goal-item {
+        display: flex;
+        gap: 1rem;
+        padding: 1rem;
+        background: var(--light-bg);
+        border-radius: 12px;
+        transition: all 0.3s ease;
+    }
+    
+    .goal-item:hover {
+        background: white;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        transform: translateX(5px);
+    }
+    
+    .goal-icon {
+        width: 45px;
+        height: 45px;
+        background: rgba(218,165,32,0.1);
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .goal-icon i {
+        font-size: 1.2rem;
+        color: var(--primary-gold-dark);
+    }
+    
+    .goal-content h4 {
+        font-size: 0.9rem;
+        font-weight: 700;
+        margin-bottom: 0.2rem;
+    }
+    
+    .goal-content p {
+        font-size: 0.75rem;
+        color: #6B7280;
+        margin: 0;
+    }
+    
+    /* Core Values Section */
+    .core-values-section {
+        padding: 80px 0;
+        background: var(--light-bg);
+    }
+    
+    .section-header {
+        text-align: center;
+        margin-bottom: 3rem;
+    }
+    
+    .section-header h2 {
+        font-size: 2.2rem;
+        font-weight: 700;
+        font-family: var(--heading-font);
+        margin-bottom: 0.5rem;
+    }
+    
+    .section-header h2 span {
+        color: var(--primary-green);
+        position: relative;
+    }
+    
+    .section-header h2 span::after {
+        content: '';
+        position: absolute;
+        bottom: 5px;
+        left: 0;
+        width: 100%;
+        height: 8px;
+        background: rgba(10,125,59,0.2);
+        z-index: -1;
+    }
+    
+    .section-header p {
+        color: #6B7280;
+        font-family: var(--alt-font);
+    }
+    
+    .value-card-modern {
+        background: white;
+        border-radius: 16px;
+        padding: 1.5rem;
+        position: relative;
+        overflow: hidden;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        height: 100%;
+    }
+    
+    .value-card-modern:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 20px 30px rgba(0,0,0,0.1);
+    }
+    
+    .value-number {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        font-size: 2rem;
+        font-weight: 800;
+        color: rgba(10,125,59,0.05);
+        font-family: var(--heading-font);
+    }
+    
+    .value-content {
+        text-align: center;
+        position: relative;
+        z-index: 1;
+    }
+    
+    .value-content i {
+        font-size: 2rem;
+        color: var(--primary-green);
+        margin-bottom: 1rem;
+    }
+    
+    .value-content h3 {
+        font-size: 1rem;
+        font-weight: 700;
+        margin-bottom: 0.5rem;
+    }
+    
+    .value-content p {
+        font-size: 0.8rem;
+        color: #6B7280;
+    }
+    
+    .value-hover-bg {
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(135deg, var(--primary-green), var(--green-dark));
+        transition: left 0.3s ease;
+        z-index: 0;
+    }
+    
+    .value-card-modern:hover .value-hover-bg {
+        left: 0;
+    }
+    
+    .value-card-modern:hover .value-content {
+        color: white;
+    }
+    
+    .value-card-modern:hover .value-content i,
+    .value-card-modern:hover .value-content h3,
+    .value-card-modern:hover .value-content p {
+        color: white;
+        position: relative;
+        z-index: 1;
+    }
+    
+    .value-card-modern:hover .value-number {
+        color: rgba(255,255,255,0.1);
+    }
+    
+    /* Why We Exist Section */
+    .why-exist-section {
+        padding: 80px 0;
+        background: white;
+    }
+    
+    .exist-image {
+        position: relative;
+        border-radius: 20px;
+        overflow: hidden;
+        box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+    }
+    
+    .exist-image img {
+        width: 100%;
+        height: 400px;
+        object-fit: cover;
+        transition: transform 0.5s ease;
+    }
+    
+    .exist-image:hover img {
+        transform: scale(1.05);
+    }
+    
+    .image-stats {
+        position: absolute;
+        bottom: -20px;
+        right: -20px;
+    }
+    
+    .stat-circle {
+        width: 100px;
+        height: 100px;
+        background: linear-gradient(135deg, var(--primary-gold), var(--gold-dark));
+        border-radius: 50%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        text-align: center;
+        animation: pulse 2s infinite;
+    }
+    
+    @keyframes pulse {
+        0%, 100% { transform: scale(1); }
+        50% { transform: scale(1.05); }
+    }
+    
+    .stat-circle .number {
+        font-size: 1.5rem;
+        font-weight: 800;
+    }
+    
+    .stat-circle .label {
+        font-size: 0.7rem;
+    }
+    
+    .exist-content {
+        padding: 1rem;
+    }
+    
+    .section-title {
+        font-size: 2rem;
+        font-weight: 700;
+        font-family: var(--heading-font);
+        margin-bottom: 1.5rem;
+    }
+    
+    .section-title span {
+        color: var(--primary-green);
+    }
+    
+    .exist-text {
+        color: #4B5563;
+        line-height: 1.8;
+        margin-bottom: 1.5rem;
+    }
+    
+    .mission-quote {
+        background: var(--light-bg);
+        padding: 1.5rem;
+        border-radius: 16px;
+        position: relative;
+        margin-top: 2rem;
+    }
+    
+    .mission-quote i {
+        font-size: 1.5rem;
+        color: var(--primary-green);
+        opacity: 0.3;
+        margin-bottom: 0.5rem;
+    }
+    
+    .mission-quote p {
+        font-size: 0.95rem;
+        font-style: italic;
+        color: var(--primary-green);
+        margin-bottom: 0.5rem;
+    }
+    
+    .quote-author {
+        font-size: 0.8rem;
+        color: #6B7280;
+    }
+    
+    /* Goals Section */
+    .goals-section {
+        padding: 80px 0;
+        background: var(--light-bg);
+    }
+    
+    .goal-card {
+        background: white;
+        padding: 2rem;
+        border-radius: 20px;
+        text-align: center;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        position: relative;
+        height: 100%;
+    }
+    
+    .goal-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 20px 30px rgba(0,0,0,0.1);
+    }
+    
+    .goal-number {
+        position: absolute;
+        top: -15px;
+        left: 20px;
+        background: var(--primary-green);
+        color: white;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        font-size: 1rem;
+    }
+    
+    .goal-card i {
+        font-size: 2.5rem;
+        color: var(--primary-green);
+        margin-bottom: 1rem;
+    }
+    
+    .goal-card h3 {
+        font-size: 1.2rem;
+        font-weight: 700;
+        margin-bottom: 0.5rem;
+    }
+    
+    .goal-card p {
+        font-size: 0.85rem;
+        color: #6B7280;
+    }
+    
+    /* CTA Section */
+    .mv-cta {
+        padding: 0 24px 80px;
+    }
+    
+    .cta-wrapper-modern {
+        background: linear-gradient(135deg, var(--primary-green), var(--dark-bg));
+        border-radius: 24px;
+        padding: 3rem;
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .cta-wrapper-modern::before {
+        content: '';
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: radial-gradient(circle, rgba(255,215,0,0.1), transparent);
+        animation: rotate 20s linear infinite;
+    }
+    
+    @keyframes rotate {
+        from { transform: rotate(0deg); }
+        to { transform: rotate(360deg); }
+    }
+    
+    .cta-content {
+        position: relative;
+        z-index: 1;
+        text-align: center;
+        color: white;
+    }
+    
+    .cta-content h3 {
+        font-size: 1.8rem;
+        font-weight: 700;
+        margin-bottom: 0.5rem;
+    }
+    
+    .cta-content p {
+        font-size: 1rem;
+        margin-bottom: 1.5rem;
+        opacity: 0.9;
+    }
+    
+    .cta-buttons {
+        display: flex;
+        gap: 1rem;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+    
+    .cta-wrapper-modern .btn-primary {
+        background: white;
+        color: var(--primary-green);
+    }
+    
+    .cta-wrapper-modern .btn-primary:hover {
+        background: var(--primary-gold);
+        color: var(--dark-bg);
+        transform: translateY(-2px);
+    }
+    
+    .cta-wrapper-modern .btn-outline-light {
+        border-color: white;
+        color: white;
+    }
+    
+    .cta-wrapper-modern .btn-outline-light:hover {
+        background: white;
+        color: var(--primary-green);
+        transform: translateY(-2px);
+    }
+    
+    .cta-decoration {
+        position: absolute;
+        bottom: 20px;
+        right: 20px;
+        display: flex;
+        gap: 1rem;
+        opacity: 0.1;
+    }
+    
+    .cta-decoration i {
+        font-size: 3rem;
+        color: white;
+    }
+    
+    /* Responsive */
+    @media (max-width: 992px) {
+        .mission-hero-title {
+            font-size: 2.5rem;
+        }
+        
+        .card-title {
+            font-size: 1.5rem;
+        }
+        
+        .section-title {
+            font-size: 1.8rem;
+        }
+        
+        .exist-image img {
+            height: 300px;
+        }
+    }
+    
+    @media (max-width: 768px) {
+        .mission-hero-section {
+            margin-top: 70px;
+            padding: 60px 0 40px;
+        }
+        
+        .mission-hero-title {
+            font-size: 2rem;
+        }
+        
+        .card-title {
+            font-size: 1.3rem;
+        }
+        
+        .section-title {
+            font-size: 1.5rem;
+        }
+        
+        .cta-wrapper-modern {
+            padding: 2rem;
+        }
+        
+        .cta-content h3 {
+            font-size: 1.3rem;
+        }
+        
+        .stat-circle {
+            width: 70px;
+            height: 70px;
+        }
+        
+        .stat-circle .number {
+            font-size: 1rem;
+        }
+    }
+</style>
+{% endblock %}

@@ -1,0 +1,927 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}About Us - Meru Young Professionals{% endblock %}
+
+{% block content %}
+<!-- Hero Section for About Page -->
+<section class="about-hero-section">
+    <div class="container">
+        <div class="row justify-content-center text-center">
+            <div class="col-lg-8" data-aos="fade-up">
+                <h1 class="about-hero-title">About <span class="text-gradient">MYP</span></h1>
+                <p class="about-hero-subtitle">Empowering Professionals, Transforming Communities</p>
+                <div class="hero-divider"></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Who We Are Section -->
+<section class="about-section">
+    <div class="container">
+        <div class="row align-items-center g-5">
+            <div class="col-lg-6" data-aos="fade-right">
+                <div class="about-content">
+                    <h2 class="section-title">Who We <span>Are</span></h2>
+                    <p class="about-text">
+                        Meru Young Professionals (MYP) is a non-political, non-profit youth-led organization that brings together 
+                        professionals from the Mt. Kenya region and beyond. We are a dynamic community of ambitious young leaders 
+                        dedicated to driving positive change in our communities.
+                    </p>
+                    <p class="about-text">
+                        Founded in 2024, MYP brings together talented individuals from various fields to collaborate, learn, 
+                        and grow together while making a meaningful impact in our community.
+                    </p>
+                    <div class="about-stats">
+                        <div class="stat-box">
+                            <span class="stat-number">2024</span>
+                            <span class="stat-label">Founded</span>
+                        </div>
+                        <div class="stat-box">
+                            <span class="stat-number">1,200+</span>
+                            <span class="stat-label">Members</span>
+                        </div>
+                        <div class="stat-box">
+                            <span class="stat-number">45+</span>
+                            <span class="stat-label">Projects</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6" data-aos="fade-left">
+                <div class="about-image-wrapper">
+                    <div class="about-image">
+                        <img src="{% static 'images/about-image.jpg' %}" alt="About MYP" class="img-fluid rounded-4" onerror="this.src='https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3'">
+                        <div class="image-overlay"></div>
+                    </div>
+                    <div class="floating-card">
+                        <i class="fas fa-users"></i>
+                        <span>Youth-Led Organization</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Mission & Vision Cards -->
+<section class="mission-vision-section">
+    <div class="container">
+        <div class="row g-4">
+            <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
+                <div class="mission-card">
+                    <div class="card-icon">
+                        <i class="fas fa-bullseye"></i>
+                    </div>
+                    <h3>Our Mission</h3>
+                    <p>{{ site_config.mission_text|default:"To empower young professionals through leadership development, innovation, entrepreneurship, mentorship, community service, and sustainable growth." }}</p>
+                    <div class="card-footer-line"></div>
+                </div>
+            </div>
+            <div class="col-lg-6" data-aos="fade-up" data-aos-delay="200">
+                <div class="vision-card">
+                    <div class="card-icon">
+                        <i class="fas fa-eye"></i>
+                    </div>
+                    <h3>Our Vision</h3>
+                    <p>{{ site_config.vision_text|default:"To become the leading network of transformative young professionals creating positive impact across Kenya and beyond." }}</p>
+                    <div class="card-footer-line"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Our Story Section -->
+<section class="story-section">
+    <div class="container">
+        <div class="row align-items-center g-5">
+            <div class="col-lg-6 order-lg-2" data-aos="fade-left">
+                <div class="story-content">
+                    <h2 class="section-title">Our <span>Story</span></h2>
+                    <p class="story-text">
+                        MYP was born from a vision to create a platform where young professionals could connect, collaborate, 
+                        and contribute to the development of the Mt. Kenya region and beyond.
+                    </p>
+                    <p class="story-text">
+                        What started as a small group of passionate individuals has grown into a vibrant community of over 
+                        1,200 members, all committed to excellence, innovation, and service.
+                    </p>
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <h4>2024</h4>
+                            <p>MYP was founded with 50 founding members</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <h4>2025</h4>
+                            <p>Expanded to 8 departments and 45+ successful projects</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <h4>2026</h4>
+                            <p>Reached 1,200+ members across 30+ communities</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 order-lg-1" data-aos="fade-right">
+                <div class="story-image-wrapper">
+                    <div class="story-image">
+                        <img src="{% static 'images/story-image.jpg' %}" alt="Our Story" class="img-fluid rounded-4" onerror="this.src='https://images.unsplash.com/photo-1557804506-669a67965ba0?ixlib=rb-4.0.3'">
+                    </div>
+                    <div class="experience-badge">
+                        <span class="years">2+</span>
+                        <span class="text">Years of Impact</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Core Values Section (Enhanced) -->
+<section class="about-values-section">
+    <div class="container">
+        <div class="section-header text-center" data-aos="fade-up">
+            <h2>Our Core <span>Values</span></h2>
+            <p>The principles that guide every member</p>
+        </div>
+        <div class="row g-4">
+            {% for value in core_values %}
+            <div class="col-lg-3 col-md-4 col-sm-6" data-aos="zoom-in" data-aos-delay="{{ forloop.counter|add:50 }}">
+                <div class="value-card-about">
+                    <div class="value-icon">
+                        <i class="fas {{ value.icon|default:'fa-star' }}"></i>
+                    </div>
+                    <h4>{{ value.title }}</h4>
+                    <p>{{ value.description|default:"We value integrity and excellence in all we do." }}</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- Impact Section -->
+<section class="impact-section">
+    <div class="container">
+        <div class="section-header text-center" data-aos="fade-up">
+            <h2>Our <span>Impact</span></h2>
+            <p>Making a difference in our community</p>
+        </div>
+        <div class="row g-4">
+            <div class="col-md-3 col-6" data-aos="fade-up" data-aos-delay="100">
+                <div class="impact-card">
+                    <div class="impact-number">30+</div>
+                    <div class="impact-label">Communities</div>
+                    <div class="impact-icon"><i class="fas fa-globe-africa"></i></div>
+                </div>
+            </div>
+            <div class="col-md-3 col-6" data-aos="fade-up" data-aos-delay="200">
+                <div class="impact-card">
+                    <div class="impact-number">1,200+</div>
+                    <div class="impact-label">Members</div>
+                    <div class="impact-icon"><i class="fas fa-users"></i></div>
+                </div>
+            </div>
+            <div class="col-md-3 col-6" data-aos="fade-up" data-aos-delay="300">
+                <div class="impact-card">
+                    <div class="impact-number">45+</div>
+                    <div class="impact-label">Projects</div>
+                    <div class="impact-icon"><i class="fas fa-project-diagram"></i></div>
+                </div>
+            </div>
+            <div class="col-md-3 col-6" data-aos="fade-up" data-aos-delay="400">
+                <div class="impact-card">
+                    <div class="impact-number">8</div>
+                    <div class="impact-label">Departments</div>
+                    <div class="impact-icon"><i class="fas fa-building"></i></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Leadership Philosophy Section -->
+<section class="philosophy-section">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-10" data-aos="fade-up">
+                <div class="philosophy-card">
+                    <i class="fas fa-quote-left"></i>
+                    <h3>Leadership Philosophy</h3>
+                    <p>
+                        We believe that true leadership is about service, collaboration, and empowerment. 
+                        Our philosophy centers on creating opportunities for young professionals to lead, 
+                        innovate, and create lasting change in their communities. We foster an environment 
+                        where every voice is heard, every idea is valued, and every member has the opportunity 
+                        to grow and make a difference.
+                    </p>
+                    <div class="philosophy-footer">
+                        <span>— MYP Leadership Council</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA Section for About Page - FIXED: Removed broken 'contact' URL -->
+<section class="about-cta">
+    <div class="container">
+        <div class="cta-wrapper" data-aos="zoom-in-up">
+            <h3>Ready to join the movement?</h3>
+            <p>Become part of a community that's shaping the future of the Mt. Kenya region</p>
+            <div class="cta-buttons-about">
+                <a href="{% url 'membership:register' %}" class="btn btn-primary join-now-btn">
+                    <i class="fas fa-star me-2"></i>Join MYP Today
+                </a>
+                <a href="/contact/" class="btn btn-outline-light contact-us-btn">
+                    <i class="fas fa-envelope me-2"></i>Contact Us
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    /* About Page Hero Section */
+    .about-hero-section {
+        background: linear-gradient(135deg, var(--primary-green) 0%, var(--dark-bg) 100%);
+        padding: 80px 0 60px;
+        position: relative;
+        overflow: hidden;
+        margin-top: 80px;
+    }
+    
+    .about-hero-section::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320'%3E%3Cpath fill='rgba(255,215,0,0.05)' d='M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,122.7C672,117,768,139,864,154.7C960,171,1056,181,1152,165.3C1248,149,1344,107,1392,85.3L1440,64L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z'%3E%3C/path%3E%3C/svg%3E") repeat-x bottom;
+        background-size: cover;
+        opacity: 0.5;
+        pointer-events: none;
+    }
+    
+    .about-hero-title {
+        font-size: 3.5rem;
+        font-weight: 800;
+        font-family: var(--heading-font);
+        color: white;
+        margin-bottom: 1rem;
+    }
+    
+    .text-gradient {
+        background: linear-gradient(135deg, var(--primary-gold), #fff);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+    }
+    
+    .about-hero-subtitle {
+        font-size: 1.1rem;
+        color: rgba(255,255,255,0.9);
+        font-family: var(--alt-font);
+    }
+    
+    .hero-divider {
+        width: 80px;
+        height: 3px;
+        background: var(--primary-gold);
+        margin: 20px auto 0;
+        border-radius: 3px;
+    }
+    
+    /* About Section */
+    .about-section {
+        padding: 80px 0;
+        background: white;
+    }
+    
+    .section-title {
+        font-size: 2.2rem;
+        font-weight: 700;
+        font-family: var(--heading-font);
+        margin-bottom: 1.5rem;
+        color: var(--dark-bg);
+    }
+    
+    .section-title span {
+        color: var(--primary-green);
+        position: relative;
+    }
+    
+    .section-title span::after {
+        content: '';
+        position: absolute;
+        bottom: 5px;
+        left: 0;
+        width: 100%;
+        height: 8px;
+        background: rgba(10,125,59,0.2);
+        z-index: -1;
+    }
+    
+    .about-text {
+        color: #4B5563;
+        line-height: 1.8;
+        margin-bottom: 1.5rem;
+        font-size: 1rem;
+    }
+    
+    .about-stats {
+        display: flex;
+        gap: 2rem;
+        margin-top: 2rem;
+    }
+    
+    .stat-box {
+        text-align: center;
+    }
+    
+    .stat-box .stat-number {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: var(--primary-green);
+        display: block;
+        font-family: var(--heading-font);
+    }
+    
+    .stat-box .stat-label {
+        font-size: 0.8rem;
+        color: #6B7280;
+        font-family: var(--alt-font);
+    }
+    
+    .about-image-wrapper {
+        position: relative;
+    }
+    
+    .about-image {
+        position: relative;
+        border-radius: 20px;
+        overflow: hidden;
+        box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+    }
+    
+    .about-image img {
+        width: 100%;
+        height: 400px;
+        object-fit: cover;
+        transition: transform 0.5s ease;
+    }
+    
+    .about-image:hover img {
+        transform: scale(1.05);
+    }
+    
+    .image-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(135deg, rgba(10,125,59,0.2), rgba(26,26,26,0.4));
+    }
+    
+    .floating-card {
+        position: absolute;
+        bottom: -20px;
+        right: -20px;
+        background: white;
+        padding: 1rem 1.5rem;
+        border-radius: 50px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-weight: 600;
+        color: var(--primary-green);
+        animation: float 3s ease-in-out infinite;
+    }
+    
+    @keyframes float {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-10px); }
+    }
+    
+    /* Mission & Vision Cards */
+    .mission-vision-section {
+        padding: 60px 0;
+        background: var(--light-bg);
+    }
+    
+    .mission-card, .vision-card {
+        background: white;
+        padding: 2.5rem;
+        border-radius: 20px;
+        text-align: center;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        height: 100%;
+    }
+    
+    .mission-card:hover, .vision-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+    }
+    
+    .card-icon {
+        width: 70px;
+        height: 70px;
+        background: linear-gradient(135deg, var(--primary-green), #1e5a38);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 1.5rem;
+        transition: all 0.3s ease;
+    }
+    
+    .mission-card:hover .card-icon, .vision-card:hover .card-icon {
+        transform: scale(1.1);
+        background: linear-gradient(135deg, #DAA520, #FFD700);
+    }
+    
+    .card-icon i {
+        font-size: 2rem;
+        color: white;
+    }
+    
+    .mission-card h3, .vision-card h3 {
+        font-size: 1.5rem;
+        font-weight: 700;
+        margin-bottom: 1rem;
+        font-family: var(--heading-font);
+    }
+    
+    .mission-card p, .vision-card p {
+        color: #6B7280;
+        line-height: 1.6;
+    }
+    
+    .card-footer-line {
+        width: 50px;
+        height: 3px;
+        background: var(--primary-green);
+        margin: 1.5rem auto 0;
+        border-radius: 3px;
+        transition: width 0.3s ease;
+    }
+    
+    .mission-card:hover .card-footer-line, .vision-card:hover .card-footer-line {
+        width: 80px;
+        background: #FFD700;
+    }
+    
+    /* Story Section */
+    .story-section {
+        padding: 80px 0;
+        background: white;
+    }
+    
+    .story-text {
+        color: #4B5563;
+        line-height: 1.8;
+        margin-bottom: 1.5rem;
+    }
+    
+    .timeline-item {
+        display: flex;
+        gap: 1rem;
+        margin-bottom: 1.5rem;
+        position: relative;
+    }
+    
+    .timeline-dot {
+        width: 12px;
+        height: 12px;
+        background: var(--primary-green);
+        border-radius: 50%;
+        margin-top: 5px;
+        position: relative;
+    }
+    
+    .timeline-dot::before {
+        content: '';
+        position: absolute;
+        top: 12px;
+        left: 5px;
+        width: 2px;
+        height: 60px;
+        background: linear-gradient(to bottom, var(--primary-green), transparent);
+    }
+    
+    .timeline-item:last-child .timeline-dot::before {
+        display: none;
+    }
+    
+    .timeline-content h4 {
+        font-size: 1.1rem;
+        font-weight: 700;
+        color: var(--primary-green);
+        margin-bottom: 0.25rem;
+        font-family: var(--heading-font);
+    }
+    
+    .timeline-content p {
+        color: #6B7280;
+        font-size: 0.9rem;
+    }
+    
+    .story-image-wrapper {
+        position: relative;
+    }
+    
+    .story-image {
+        border-radius: 20px;
+        overflow: hidden;
+        box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+    }
+    
+    .story-image img {
+        width: 100%;
+        height: 450px;
+        object-fit: cover;
+        transition: transform 0.5s ease;
+    }
+    
+    .story-image:hover img {
+        transform: scale(1.05);
+    }
+    
+    .experience-badge {
+        position: absolute;
+        top: -20px;
+        left: -20px;
+        background: linear-gradient(135deg, #FFD700, #DAA520);
+        padding: 1rem;
+        border-radius: 16px;
+        text-align: center;
+        color: white;
+        animation: pulse 2s infinite;
+    }
+    
+    @keyframes pulse {
+        0%, 100% { transform: scale(1); }
+        50% { transform: scale(1.05); }
+    }
+    
+    .experience-badge .years {
+        font-size: 1.5rem;
+        font-weight: 800;
+        display: block;
+        line-height: 1;
+    }
+    
+    .experience-badge .text {
+        font-size: 0.7rem;
+    }
+    
+    /* Core Values Section */
+    .about-values-section {
+        padding: 80px 0;
+        background: var(--light-bg);
+    }
+    
+    .value-card-about {
+        background: white;
+        padding: 2rem;
+        border-radius: 16px;
+        text-align: center;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        height: 100%;
+    }
+    
+    .value-card-about:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 20px 30px rgba(0,0,0,0.1);
+    }
+    
+    .value-icon {
+        width: 60px;
+        height: 60px;
+        background: linear-gradient(135deg, var(--primary-green), #1e5a38);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 1rem;
+    }
+    
+    .value-icon i {
+        font-size: 1.5rem;
+        color: white;
+    }
+    
+    .value-card-about h4 {
+        font-size: 1.1rem;
+        font-weight: 700;
+        margin-bottom: 0.5rem;
+        font-family: var(--heading-font);
+    }
+    
+    .value-card-about p {
+        font-size: 0.85rem;
+        color: #6B7280;
+    }
+    
+    /* Impact Section */
+    .impact-section {
+        padding: 80px 0;
+        background: white;
+    }
+    
+    .impact-card {
+        text-align: center;
+        padding: 2rem;
+        background: white;
+        border-radius: 20px;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        border: 1px solid rgba(0,0,0,0.05);
+    }
+    
+    .impact-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 20px 30px rgba(0,0,0,0.1);
+        border-color: #FFD700;
+    }
+    
+    .impact-number {
+        font-size: 2.5rem;
+        font-weight: 800;
+        color: var(--primary-green);
+        font-family: var(--heading-font);
+        margin-bottom: 0.5rem;
+    }
+    
+    .impact-label {
+        font-size: 0.85rem;
+        color: #6B7280;
+        font-weight: 600;
+        letter-spacing: 1px;
+        margin-bottom: 1rem;
+    }
+    
+    .impact-icon i {
+        font-size: 1.5rem;
+        color: #DAA520;
+        opacity: 0.5;
+    }
+    
+    /* Philosophy Section */
+    .philosophy-section {
+        padding: 80px 0;
+        background: linear-gradient(135deg, var(--light-bg), white);
+    }
+    
+    .philosophy-card {
+        background: white;
+        padding: 3rem;
+        border-radius: 24px;
+        text-align: center;
+        box-shadow: 0 20px 40px rgba(0,0,0,0.05);
+        border: 1px solid rgba(10,125,59,0.1);
+    }
+    
+    .philosophy-card i {
+        font-size: 3rem;
+        color: var(--primary-green);
+        opacity: 0.3;
+        margin-bottom: 1rem;
+    }
+    
+    .philosophy-card h3 {
+        font-size: 1.8rem;
+        font-weight: 700;
+        margin-bottom: 1rem;
+        font-family: var(--heading-font);
+        color: var(--primary-green);
+    }
+    
+    .philosophy-card p {
+        font-size: 1rem;
+        line-height: 1.8;
+        color: #4B5563;
+        margin-bottom: 1.5rem;
+    }
+    
+    .philosophy-footer {
+        font-size: 0.9rem;
+        color: #DAA520;
+        font-weight: 600;
+    }
+    
+    /* CTA Section - BUTTONS FULLY WORKING */
+    .about-cta {
+        padding: 0 24px 80px;
+    }
+    
+    .cta-wrapper {
+        background: linear-gradient(135deg, var(--primary-green), #1a3a2e);
+        padding: 3rem;
+        border-radius: 24px;
+        text-align: center;
+        color: white;
+    }
+    
+    .cta-wrapper h3 {
+        font-size: 1.8rem;
+        font-weight: 700;
+        margin-bottom: 0.5rem;
+        font-family: var(--heading-font);
+    }
+    
+    .cta-wrapper p {
+        font-size: 1rem;
+        margin-bottom: 1.5rem;
+        opacity: 0.9;
+    }
+    
+    .cta-buttons-about {
+        display: flex;
+        gap: 1rem;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+    
+    .cta-wrapper .btn-primary {
+        background: white;
+        color: var(--primary-green);
+        border: none;
+        padding: 0.75rem 2rem;
+        border-radius: 50px;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        cursor: pointer;
+    }
+    
+    .cta-wrapper .btn-primary:hover {
+        background: #FFD700;
+        color: #1a1a1a;
+        transform: translateY(-3px);
+        box-shadow: 0 8px 25px rgba(255,215,0,0.4);
+    }
+    
+    .cta-wrapper .btn-outline-light {
+        border: 2px solid white;
+        background: transparent;
+        color: white;
+        padding: 0.75rem 2rem;
+        border-radius: 50px;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        cursor: pointer;
+    }
+    
+    .cta-wrapper .btn-outline-light:hover {
+        background: white;
+        color: var(--primary-green);
+        transform: translateY(-3px);
+        box-shadow: 0 8px 25px rgba(255,255,255,0.3);
+    }
+    
+    /* Responsive */
+    @media (max-width: 992px) {
+        .about-hero-title {
+            font-size: 2.5rem;
+        }
+        
+        .section-title {
+            font-size: 1.8rem;
+        }
+        
+        .about-image img, .story-image img {
+            height: 300px;
+        }
+        
+        .philosophy-card {
+            padding: 2rem;
+        }
+        
+        .philosophy-card h3 {
+            font-size: 1.5rem;
+        }
+        
+        .cta-wrapper {
+            padding: 2rem;
+        }
+        
+        .cta-wrapper h3 {
+            font-size: 1.5rem;
+        }
+    }
+    
+    @media (max-width: 768px) {
+        .about-hero-section {
+            margin-top: 70px;
+            padding: 60px 0 40px;
+        }
+        
+        .about-hero-title {
+            font-size: 2rem;
+        }
+        
+        .section-title {
+            font-size: 1.5rem;
+        }
+        
+        .about-stats {
+            justify-content: center;
+        }
+        
+        .floating-card {
+            bottom: -10px;
+            right: -10px;
+            padding: 0.5rem 1rem;
+            font-size: 0.8rem;
+        }
+        
+        .experience-badge {
+            top: -10px;
+            left: -10px;
+            padding: 0.5rem;
+        }
+        
+        .experience-badge .years {
+            font-size: 1rem;
+        }
+        
+        .cta-buttons-about {
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .cta-wrapper .btn-primary,
+        .cta-wrapper .btn-outline-light {
+            width: 100%;
+            max-width: 250px;
+            justify-content: center;
+        }
+    }
+</style>
+
+<script>
+    // Ensure buttons work even if URL reverse fails - fallback to direct link
+    document.addEventListener('DOMContentLoaded', function() {
+        const joinButtons = document.querySelectorAll('.join-now-btn, .btn-primary[href*="membership"]');
+        
+        joinButtons.forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                const href = this.getAttribute('href');
+                if (!href || href === '#' || href === '') {
+                    e.preventDefault();
+                    window.location.href = '/membership/register/';
+                }
+            });
+        });
+        
+        // Fix contact button
+        const contactBtn = document.querySelector('.contact-us-btn');
+        if (contactBtn && (!contactBtn.getAttribute('href') || contactBtn.getAttribute('href') === '#')) {
+            contactBtn.setAttribute('href', '/contact/');
+        }
+        
+        // Add animation to cards on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+        
+        document.querySelectorAll('.mission-card, .vision-card, .value-card-about, .impact-card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(30px)';
+            card.style.transition = 'all 0.6s ease-out';
+            observer.observe(card);
+        });
+    });
+</script>
+{% endblock %}

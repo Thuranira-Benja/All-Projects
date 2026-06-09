@@ -1,0 +1,345 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="hero-section">
+    <div class="container">
+        <div class="hero-content text-center">
+            <p class="hero-tagline" data-aos="fade-up">{{ site_config.hero_tagline|default:"MT. KENYA · NON-PROFIT · YOUTH-LED" }}</p>
+            <h1 class="hero-title" data-aos="fade-up" data-aos-delay="100">
+                {{ site_config.hero_title_line1|default:"Empowering Professionals" }}<br>
+                {{ site_config.hero_title_line2|default:"Transforming Communities" }}
+            </h1>
+            <p class="hero-description" data-aos="fade-up" data-aos-delay="200">
+                {{ site_config.hero_subtitle|default:"Meru Young Professionals unites a generation of leaders, innovators and changemakers from the Mt. Kenya region and beyond." }}
+            </p>
+            <div class="hero-buttons" data-aos="fade-up" data-aos-delay="300">
+                <a href="{% url 'membership:register' %}" class="btn btn-primary btn-lg become-member-btn">
+                    <i class="fas fa-star me-2"></i>{{ site_config.become_member_text|default:"Become a Member" }}
+                    <span class="sparkle">✨</span>
+                </a>
+                <a href="{% url 'membership:register' %}" class="btn btn-outline-light btn-lg">{{ site_config.join_us_text|default:"Join Us" }}</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Statistics Section with Counting Animation -->
+<section class="stats-section">
+    <div class="container">
+        <div class="stats-grid">
+            {% for stat in stats %}
+            <div class="stat-item" data-aos="fade-up" data-aos-delay="{{ forloop.counter|add:100 }}">
+                <div class="stat-number">
+                    <span class="counter-number" data-target="{{ stat.value|cut:'+' }}">0</span>{% if '+' in stat.value %}+{% endif %}
+                </div>
+                <div class="stat-label">{{ stat.label }}</div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- Welcome Section -->
+<section class="welcome-section">
+    <div class="container">
+        <div class="welcome-grid">
+            <div class="welcome-text" data-aos="fade-right">
+                <h2>{{ site_config.welcome_title|default:"A network rooted in Mt. Kenya, reaching nation-wide." }}</h2>
+                <p>{{ site_config.welcome_content|safe|default:"We bring together young professionals committed to leadership, innovation, entrepreneurship, mentorship, environmental conservation and economic empowerment — anchored in service and excellence." }}</p>
+                <a href="{{ site_config.learn_more_url|default:'/about/' }}" class="btn btn-link">Learn more →</a>
+            </div>
+            <div class="values-grid" data-aos="fade-left">
+                <div class="value-card" data-aos="zoom-in" data-aos-delay="150">
+                    <h3>Mission</h3>
+                    <p>{{ site_config.mission_text|default:"Empower young professionals through leadership, innovation and service." }}</p>
+                </div>
+                <div class="value-card" data-aos="zoom-in" data-aos-delay="200">
+                    <h3>Vision</h3>
+                    <p>{{ site_config.vision_text|default:"The leading network of transformative professionals across Kenya." }}</p>
+                </div>
+                <div class="value-card" data-aos="zoom-in" data-aos-delay="250">
+                    <h3>Community</h3>
+                    <p>{{ site_config.community_text|default:"1,200+ professionals collaborating to drive measurable impact." }}</p>
+                </div>
+                <div class="value-card" data-aos="zoom-in" data-aos-delay="300">
+                    <h3>Innovation</h3>
+                    <p>{{ site_config.innovation_text|default:"Bold ideas, applied locally for lasting transformation." }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Core Values Section -->
+<section class="values-section">
+    <div class="container">
+        <div class="section-header" data-aos="fade-up">
+            <h2>{{ site_config.core_values_title|default:"CORE VALUES" }}</h2>
+            <p>{{ site_config.core_values_subtitle|default:"The principles that guide every member" }}</p>
+        </div>
+        <div class="core-values-grid">
+            {% for value in core_values %}
+            <div class="core-value" data-aos="flip-up" data-aos-delay="{{ forloop.counter|add:50 }}">
+                {{ value.title }}
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- Departments Section -->
+<section class="departments-section">
+    <div class="container">
+        <div class="section-header" data-aos="fade-up">
+            <h2>{{ site_config.departments_title|default:"DEPARTMENTS" }}</h2>
+            <p>{{ site_config.departments_subtitle|default:"Where impact takes shape" }}</p>
+        </div>
+        <div class="departments-grid">
+            {% for dept in departments %}
+            <div class="department-card" data-aos="flip-left" data-aos-delay="{{ forloop.counter|add:100 }}">
+                <i class="fas {{ dept.icon }}"></i>
+                <h3>{{ dept.name }}</h3>
+                <p>{{ dept.description|default:"Specialized programmes, mentorship and projects led by member experts." }}</p>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="text-center mt-4" data-aos="fade-up">
+            <a href="/departments/" class="btn btn-link">{{ site_config.view_all_departments_text|default:"View all →" }}</a>
+        </div>
+    </div>
+</section>
+
+<!-- Featured Projects Section -->
+<section class="projects-section">
+    <div class="container">
+        <div class="section-header" data-aos="fade-up">
+            <h2>{{ site_config.projects_title|default:"FEATURED PROJECTS" }}</h2>
+            <p>{{ site_config.projects_subtitle|default:"Building tomorrow, today." }}</p>
+        </div>
+        <div class="projects-grid">
+            {% for project in featured_projects %}
+            <div class="project-card" data-aos="zoom-in-up" data-aos-delay="{{ forloop.counter|add:100 }}">
+                <div class="project-image-container">
+                    {% if project.image %}
+                    <img src="{{ project.image.url }}" alt="{{ project.title }}" class="project-image">
+                    {% else %}
+                    <div class="project-placeholder">
+                        <i class="fas fa-tree"></i>
+                    </div>
+                    {% endif %}
+                </div>
+                <div class="project-content">
+                    <h3>{{ project.title }}</h3>
+                    <p class="project-meta">{{ project.status }} • {{ project.location }}</p>
+                    <p>{{ project.description|truncatewords:15 }}</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="text-center mt-4" data-aos="fade-up">
+            <a href="/projects/" class="btn btn-link">{{ site_config.explore_projects_text|default:"Explore projects" }}</a>
+        </div>
+    </div>
+</section>
+
+<!-- Upcoming Events Section -->
+<section class="events-section">
+    <div class="container">
+        <div class="section-header" data-aos="fade-up">
+            <h2>{{ site_config.events_title|default:"UPCOMING EVENTS" }}</h2>
+            <p>{{ site_config.events_subtitle|default:"Don't miss out." }}</p>
+        </div>
+        <div class="events-grid">
+            {% for event in upcoming_events %}
+            <div class="event-card" data-aos="zoom-in-up" data-aos-delay="{{ forloop.counter|add:100 }}">
+                <div class="event-icon-wrapper">
+                    <i class="fas {{ event.icon|default:'fa-calendar-alt' }}"></i>
+                </div>
+                <h3>{{ event.title }}</h3>
+                <p>{{ event.date }}</p>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="text-center mt-4" data-aos="fade-up">
+            <a href="/events/" class="btn btn-link">{{ site_config.view_calendar_text|default:"View calendar" }}</a>
+        </div>
+    </div>
+</section>
+
+<!-- Latest News Section -->
+<section class="blog-section">
+    <div class="container">
+        <div class="section-header" data-aos="fade-up">
+            <h2>{{ site_config.blog_title|default:"LATEST NEWS & BLOGS" }}</h2>
+            <p>{{ site_config.blog_subtitle|default:"Voices of MYP" }}</p>
+        </div>
+        <div class="blog-grid">
+            {% for post in latest_posts %}
+            <div class="blog-card" data-aos="flip-up" data-aos-delay="{{ forloop.counter|add:100 }}">
+                <div class="blog-image-container">
+                    {% if post.featured_image %}
+                    <img src="{{ post.featured_image.url }}" alt="{{ post.title }}" class="blog-image">
+                    {% else %}
+                    <div class="blog-placeholder">
+                        <i class="fas fa-newspaper"></i>
+                    </div>
+                    {% endif %}
+                    <span class="blog-category">{{ post.category|default:"Leadership" }}</span>
+                </div>
+                <div class="blog-content">
+                    <h3>{{ post.title|truncatewords:8 }}</h3>
+                    <p>{{ post.excerpt|truncatewords:15 }}</p>
+                    <a href="/blog/{{ post.slug }}/" class="btn btn-link p-0">Read More →</a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="text-center mt-4" data-aos="fade-up">
+            <a href="/blog/" class="btn btn-link">{{ site_config.all_articles_text|default:"All articles →" }}</a>
+        </div>
+    </div>
+</section>
+
+<!-- Testimonial Section -->
+<section class="testimonial-section">
+    <div class="container">
+        <div class="testimonial-card" data-aos="zoom-in">
+            <i class="fas fa-quote-left"></i>
+            <p>{{ site_config.testimonial_text|default:"MYP gave me a community of mentors and a platform to launch my agribusiness. Today we employ 14 young people in Meru." }}</p>
+            <div class="testimonial-author">— {{ site_config.testimonial_author|default:"Wanjiru K." }}, {{ site_config.testimonial_role|default:"MYP Member since 2022" }}</div>
+        </div>
+    </div>
+</section>
+
+<!-- Partners Section -->
+<section class="partners-section">
+    <div class="container">
+        <div class="section-header" data-aos="fade-up">
+            <h2>{{ site_config.partners_title|default:"PARTNERS & SPONSORS" }}</h2>
+        </div>
+        <div class="partners-grid">
+            {% for partner in partners %}
+            <div class="partner" data-aos="fade-up" data-aos-delay="{{ forloop.counter|add:50 }}">
+                {% if partner.logo %}
+                <img src="{{ partner.logo.url }}" alt="{{ partner.name }}">
+                {% else %}
+                {{ partner.name }}
+                {% endif %}
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- CTA Section -->
+<section class="cta-section-wrapper">
+    <div class="container">
+        <div class="cta-section" data-aos="zoom-in-up">
+            <h2>{{ site_config.cta_title|default:"Ready to make an impact?" }}</h2>
+            <p>{{ site_config.cta_subtitle|default:"Join 1,200+ young professionals transforming Kenya — one project, one community at a time." }}</p>
+            <div class="cta-buttons">
+                <a href="{% url 'membership:register' %}" class="btn btn-primary become-member-btn">
+                    <i class="fas fa-star me-2"></i>{{ site_config.cta_button_text|default:"Become a Member" }}
+                </a>
+                <a href="{{ site_config.contact_button_url|default:'/contact/' }}" class="btn btn-outline-light">{{ site_config.contact_button_text|default:"Contact Us" }}</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    /* Additional styles for twinkling button */
+    .become-member-btn {
+        position: relative;
+        overflow: hidden;
+        transition: all 0.3s ease;
+    }
+    
+    .become-member-btn .sparkle {
+        position: absolute;
+        top: -10px;
+        right: -10px;
+        font-size: 1rem;
+        animation: sparkleFloat 1.5s ease-in-out infinite;
+        opacity: 0;
+    }
+    
+    .become-member-btn:hover .sparkle {
+        opacity: 1;
+    }
+    
+    @keyframes sparkleFloat {
+        0%, 100% {
+            transform: translate(0, 0) scale(1);
+            opacity: 0;
+        }
+        50% {
+            transform: translate(-5px, -5px) scale(1.2);
+            opacity: 1;
+        }
+    }
+    
+    /* Add hover scale effect to all cards */
+    .stat-item, .value-card, .department-card, .project-card, .event-card, .blog-card, .partner {
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    .stat-item:hover, .value-card:hover, .department-card:hover, .project-card:hover, .event-card:hover, .blog-card:hover, .partner:hover {
+        transform: translateY(-8px) scale(1.02);
+    }
+    
+    /* Add gradient animation to section headers */
+    .section-header h2 {
+        background: linear-gradient(90deg, var(--primary-green), var(--primary-gold), var(--primary-green));
+        background-size: 200% auto;
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        animation: gradientFlow 3s linear infinite;
+    }
+    
+    @keyframes gradientFlow {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+    }
+</style>
+
+<script>
+    // Additional modern animations
+    document.addEventListener('DOMContentLoaded', function() {
+        // Add staggered animation to cards when they come into view
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+        
+        // Observe all cards for fade-in effect
+        document.querySelectorAll('.department-card, .project-card, .event-card, .blog-card, .value-card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(30px)';
+            card.style.transition = 'all 0.6s ease-out';
+            observer.observe(card);
+        });
+        
+        // Fix any buttons that might have # as href
+        const allJoinButtons = document.querySelectorAll('a[href*="join"], a[href*="Join"], .btn-primary, .btn-outline-light');
+        allJoinButtons.forEach(btn => {
+            if (btn.getAttribute('href') === '#') {
+                btn.setAttribute('href', '{% url "membership:register" %}');
+            }
+        });
+    });
+</script>
+{% endblock %}
